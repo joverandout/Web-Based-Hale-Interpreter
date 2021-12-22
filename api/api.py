@@ -9,6 +9,6 @@ app = Flask(__name__)
 @app.route('/')
 def get_current_time():
     test = haleMain.runInterpreter("test1.hale")
-    print(test)
+    #print(test)
     return str(test)
 
