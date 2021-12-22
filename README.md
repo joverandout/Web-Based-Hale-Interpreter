@@ -22,7 +22,6 @@ printFibs(fib, 20);
 ```
 This will print the first 20 fib numbers
 ```
-$ python3 main.py test1.hale 
 1
 1
 2
