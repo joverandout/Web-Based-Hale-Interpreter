@@ -3,16 +3,21 @@ This is the subject of my Dissertation. It is a web based interpreter for my own
 
 ## Hale
 
-Hale is statically typed and purely functional, its grammar can be found in `Hale.g4`. Run by either
+Hale is statically typed and purely functional, its grammar can be found in `Hale.g4`. You can test the interpreter manually by navigating to the `/api` folder and running following commands.
 
 ```
-$ python3 main.py 
+$ python3 haleMain.py 
 ```
-OR
+This will open the interactive interpreter similar to GHCI or `stack repl` for haskell, or similar to running just `python3` and starting the pyhton interpreter.
+Otherwise you can run
 ```
-$ python3 main.py [testfilename]
+$ python3 haleMain.py [testfilename]
 ```
-The former will open a blank interpreter, whilst the latter will execute a `.hale` file. The 4 test files show off some of what Hale can do.
+for example:
+```
+$ python3 haleMain.py test1.hale
+```
+Unlike before this instead will execute an entire `.hale` file. The 4 test files show off some of what Hale can do.
 
 For example `test1.hale` is a fibbonaci calculator but shows how Hale allows function composition and can pass functions as arguments. This is seen when in line 3 when the funciton `printFibs` takes `fib` another function as a parameter.
 ```
@@ -43,6 +48,22 @@ This will print the first 20 fib numbers
 4181
 6765
 ```
+Whilst `test3.hale` is a function that prints a list element by element to the console.
+```
+def printlistinlines ::= λ list : do . list == [] ? printline("") : printline(listhead(list)) & printlistinlines(listtail(list));
+printlistinlines([1,2,3,4,"hello",5]);
+```
+This will recursively print the list head and call the function again on the list tail. If the list is empty an empty line is printed. The out put is as follows:
+```
+1
+2
+3
+4
+hello
+5
+```
+The grammar for Hale can be found in `Hale.g4`
+
 ## Running
 
 To start the flask server navigate into the `/api` folder and activate the virtual environment:
