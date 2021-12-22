@@ -1,0 +1,2 @@
+def printlistinlines ::= λ list : do . list == [] ? printline("") : printline(listhead(list)) & printlistinlines(listtail(list));
+printlistinlines([1,2,3,4,"hello",5]);
