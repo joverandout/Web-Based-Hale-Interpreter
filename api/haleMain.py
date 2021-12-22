@@ -6,8 +6,131 @@ from hale.HaleParser import HaleParser
 from antlr4.BufferedTokenStream import BufferedTokenStream
 from antlr4.Lexer import Lexer
 from antlr4.Token import Token
-from inputStream import InputStream
-from CommonTokenStream import CommonTokenStream
+
+class InputStream (object):
+    __slots__ = ('name', 'strdata', '_index', 'data', '_size')
+
+    def __init__(self, data: str):
+        self.name = "<empty>"
+        self.strdata = data
+        self._loadString()
+
+    def _loadString(self):
+        self._index = 0
+        self.data = [ord(c) for c in self.strdata]
+        self._size = len(self.data)
+
+    @property
+    def index(self):
+        return self._index
+
+    @property
+    def size(self):
+        return self._size
+
+    # Reset the stream so that it's in the same state it was
+    #  when the object was created *except* the data array is not
+    #  touched.
+    #
+    def reset(self):
+        self._index = 0
+
+    def consume(self):
+        if self._index >= self._size:
+            assert self.LA(1) == Token.EOF
+            raise Exception("cannot consume EOF")
+        self._index += 1
+
+    def LA(self, offset: int):
+        if offset==0:
+            return 0 # undefined
+        if offset<0:
+            offset += 1 # e.g., translate LA(-1) to use offset=0
+        pos = self._index + offset - 1
+        if pos < 0 or pos >= self._size: # invalid
+            return Token.EOF
+        return self.data[pos]
+
+    def LT(self, offset: int):
+        return self.LA(offset)
+
+    # mark/release do nothing; we have entire buffer
+    def mark(self):
+        return -1
+
+    def release(self, marker: int):
+        pass
+
+
+    def seek(self, _index: int):
+        if _index<=self._index:
+            self._index = _index 
+            return
+        self._index = min(_index, self._size)
+
+    def getText(self, start :int, stop: int):
+        if stop >= self._size:
+            stop = self._size-1
+        if start >= self._size:
+            return ""
+        else:
+            return self.strdata[start:stop+1]
+
+    def __str__(self):
+        return self.strdata
+
+class CommonTokenStream(BufferedTokenStream):
+    __slots__ = 'channel'
+
+    def __init__(self, lexer:Lexer, channel:int=Token.DEFAULT_CHANNEL):
+        super().__init__(lexer)
+        self.channel = channel
+
+    def adjustSeekIndex(self, i:int):
+        return self.nextTokenOnChannel(i, self.channel)
+
+    def LB(self, k:int):
+        if k==0 or (self.index-k)<0:
+            return None
+        i = self.index
+        n = 1
+        # find k good tokens looking backwards
+        while n <= k:
+            # skip off-channel tokens
+            i = self.previousTokenOnChannel(i - 1, self.channel)
+            n += 1
+        if i < 0:
+            return None
+        return self.tokens[i]
+
+    def LT(self, k:int):
+        self.lazyInit()
+        if k == 0:
+            return None
+        if k < 0:
+            return self.LB(-k)
+        i = self.index
+        n = 1 # we know tokens[pos] is a good one
+        # find k good tokens
+        while n < k:
+            # skip off-channel tokens, but make sure to not look past EOF
+            if self.sync(i + 1):
+                i = self.nextTokenOnChannel(i + 1, self.channel)
+            n += 1
+        return self.tokens[i]
+
+    # Count EOF just once.#/
+    def getNumberOfOnChannelTokens(self):
+        n = 0
+        self.fill()
+        for i in range(0, len(self.tokens)):
+            t = self.tokens[i]
+            if t.channel==self.channel:
+                n += 1
+            if t.type==Token.EOF:
+                break
+        return n
+
 
 class BaseFunction:
     def __init__(self, name):
@@ -87,6 +210,14 @@ class PrintLn(BaseFunction):
         print(*param_values)
         return 1
 
+class Return(BaseFunction):
+    def __init__(self):
+        super().__init__("return")
+
+    def call(self, context, param_values):
+        global returnValue
+        returnValue = param_values
+        return param_values
 
 class Function(BaseFunction):
     def __init__(self, name, parent, params, body):
@@ -114,6 +245,7 @@ class Visitor(HaleVisitor):
         self._add_function(Map())
         self._add_function(Tail())
         self._add_function(Length())
+        self._add_function(Return())
 
     def _add_function(self, function):
         self._functions[function.name] = function
@@ -343,10 +475,6 @@ def interactive():
         except EOFError:
             break
 
-
-if __name__ == "__main__":
-
-    if len(sys.argv) > 1:
-        test = parse_file(sys.argv[1])
-    else:
-        interactive()
+def runInterpreter(fileName):
+    parse_file(fileName)
+    return returnValue
