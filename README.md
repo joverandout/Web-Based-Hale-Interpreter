@@ -1,5 +1,5 @@
 # Web Based Hale Interpreter
-This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpeter works fully the website currently just prints the result of the `return` function in `test1.hale`
+This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpeter works fully the website currently just prints the result of the `return` function in `api/test1.hale`
 
 ## Hale
 
