@@ -1,70 +1,70 @@
-# Getting Started with Create React App
+# Web Based Hale Interpreter
+This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpeter works fully the website currently just prints the result of the `return` function in `test1.hale`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Hale
 
-## Available Scripts
+Hale is statically typed and purely functional, its grammar can be found in `Hale.g4`. Run by either
 
-In the project directory, you can run:
+```
+$ python3 main.py 
+```
+OR
+```
+$ python3 main.py [testfilename]
+```
+The former will open a blank interpreter, whilst the latter will execute a `.hale` file. The 4 test files show off some of what Hale can do.
 
-### `npm start`
+For example `test1.hale` is a fibbonaci calculator but shows how Hale allows function composition and can pass functions as arguments. This is seen when in line 3 when the funciton `printFibs` takes `fib` another function as a parameter.
+```
+def fib ::= λ x : int . x <= 1 ? x : fib (x-1) + fib (x-2);
+def printFibs ::= λ f x : int . x > 1 ? printFibs(f, (x-1)) & printline(f(x)) : printline(f(x));
+printFibs(fib, 20);
+```
+This will print the first 20 fib numbers
+```
+$ python3 main.py test1.hale 
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+89
+144
+233
+377
+610
+987
+1597
+2584
+4181
+6765
+```
+## Running
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+To start the flask server navigate into the `/api` folder and activate the virtual environment:
+```
+$ . venv/bin/activate
+```
+Due to the altered `.flaskenv` file there is no need to use `EXPORT` the folder will automatically assing the `api.py`. Then run the server:
+```
+$ flask run
+```
+This should see the followig result
+```
+ * Serving Flask app 'api.py' (lazy loading) * Environment: development
+ * Debug mode: on
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 101-941-003
+```
+Navigate to the local host url to see the website
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Disclosure
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The code in this git repository is the copyright of Joe Moore and distribution or use is not allowed without explicit permission and without giving full credit
