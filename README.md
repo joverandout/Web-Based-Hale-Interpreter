@@ -51,7 +51,7 @@ This will print the first 20 fib numbers
 Whilst `test3.hale` is a function that prints a list element by element to the console.
 ```
 def printlistinlines ::= λ list : do . list == [] ? printline("") : printline(listhead(list)) & printlistinlines(listtail(list));
-printlistinlines([1,2,3,4,"hello",5]);
+printlistinlines([1,2,3,4,99,5]);
 ```
 This will recursively print the list head and call the function again on the list tail. If the list is empty an empty line is printed. The out put is as follows:
 ```
@@ -59,7 +59,7 @@ This will recursively print the list head and call the function again on the lis
 2
 3
 4
-hello
+99
 5
 ```
 The grammar for Hale can be found in `Hale.g4`
