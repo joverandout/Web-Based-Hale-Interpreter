@@ -1,5 +1,5 @@
 # Web Based Hale Interpreter
-This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpeter works fully the website currently just prints the result of the `return` function in `api/test1.hale`
+This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpreter works fully the website currently just prints the result of the `return` function in `api/test1.hale`
 
 ## Hale
 
@@ -8,7 +8,7 @@ Hale is statically typed and purely functional, its grammar can be found in `Hal
 ```
 $ python3 haleMain.py 
 ```
-This will open the interactive interpreter similar to GHCI or `stack repl` for haskell, or similar to running just `python3` and starting the pyhton interpreter.
+This will open the interactive interpreter similar to GHCI or `stack repl` for haskell, or similar to running just `python3` and starting the python interpreter.
 Otherwise you can run
 ```
 $ python3 haleMain.py [testfilename]
@@ -19,7 +19,7 @@ $ python3 haleMain.py test1.hale
 ```
 Unlike before this instead will execute an entire `.hale` file. The 4 test files show off some of what Hale can do.
 
-For example `test1.hale` is a fibbonaci calculator but shows how Hale allows function composition and can pass functions as arguments. This is seen when in line 3 when the funciton `printFibs` takes `fib` another function as a parameter.
+For example `test1.hale` is a Fibonacci calculator but shows how Hale allows function composition and can pass functions as arguments. This is seen when in line 3 when the function `printFibs` takes `fib` another function as a parameter.
 ```
 def fib ::= λ x : int . x <= 1 ? x : fib (x-1) + fib (x-2);
 def printFibs ::= λ f x : int . x > 1 ? printFibs(f, (x-1)) & printline(f(x)) : printline(f(x));
