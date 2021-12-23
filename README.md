@@ -70,11 +70,11 @@ To start the flask server navigate into the `/api` folder and activate the virtu
 ```
 $ . venv/bin/activate
 ```
-Due to the altered `.flaskenv` file there is no need to use `EXPORT` the folder will automatically assing the `api.py`. Then run the server:
+Due to the altered `.flaskenv` file there is no need to use `EXPORT` the folder will automatically assign the `api.py`. Then run the server:
 ```
 $ flask run
 ```
-This should see the followig result
+This should see the following result
 ```
  * Serving Flask app 'api.py' (lazy loading) * Environment: development
  * Debug mode: on
