@@ -478,3 +478,10 @@ def interactive():
 def runInterpreter(fileName):
     parse_file(fileName)
     return returnValue
+
+if __name__ == "__main__":
+    returnValue = 34
+    if len(sys.argv) > 1:
+        print(runInterpreter(sys.argv[1]))
+    else:
+        interactive()

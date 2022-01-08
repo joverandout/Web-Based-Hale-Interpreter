@@ -7,24 +7,25 @@ function App() {
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [SetFunctionOutput, setNewFunctionOutput] = useState(0);
 
-  useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setFunctionOutput(data.time);
-    });
-  }, []);
-
 
   useEffect(() => {
       // Simple POST request with a JSON body using fetch
       const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ title: 'React POST Request Example' })
+          body: JSON.stringify({ title: 'return("hello");' })
       };
       fetch('/write', requestOptions)
-          .then(response => response.json())
-          .then(data => this.setState({ postId: data.id }));
+          .then(response => response.json());
   }, []);
+
+
+  useEffect(() => {
+    fetch('/time').then(res => res.json()).then(data => {
+      setFunctionOutput(data.time);
+    });
+  }, []);
+
 
   return (
     <div className="App">
@@ -48,3 +49,4 @@ function App() {
 }
 
 export default App;
+
