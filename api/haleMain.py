@@ -28,10 +28,6 @@ class InputStream (object):
     def size(self):
         return self._size
 
-    # Reset the stream so that it's in the same state it was
-    #  when the object was created *except* the data array is not
-    #  touched.
-    #
     def reset(self):
         self._index = 0
 
@@ -54,7 +50,6 @@ class InputStream (object):
     def LT(self, offset: int):
         return self.LA(offset)
 
-    # mark/release do nothing; we have entire buffer
     def mark(self):
         return -1
 
@@ -94,9 +89,7 @@ class CommonTokenStream(BufferedTokenStream):
             return None
         i = self.index
         n = 1
-        # find k good tokens looking backwards
         while n <= k:
-            # skip off-channel tokens
             i = self.previousTokenOnChannel(i - 1, self.channel)
             n += 1
         if i < 0:
@@ -110,16 +103,13 @@ class CommonTokenStream(BufferedTokenStream):
         if k < 0:
             return self.LB(-k)
         i = self.index
-        n = 1 # we know tokens[pos] is a good one
-        # find k good tokens
+        n = 1 
         while n < k:
-            # skip off-channel tokens, but make sure to not look past EOF
             if self.sync(i + 1):
                 i = self.nextTokenOnChannel(i + 1, self.channel)
             n += 1
         return self.tokens[i]
 
-    # Count EOF just once.#/
     def getNumberOfOnChannelTokens(self):
         n = 0
         self.fill()
