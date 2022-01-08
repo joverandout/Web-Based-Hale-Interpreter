@@ -4,12 +4,26 @@ import './App.css';
 
 function App() {
 
-  const [currentTime, setCurrentTime] = useState(0);
+  const [FunctionOutput, setFunctionOutput] = useState(0);
+  const [SetFunctionOutput, setNewFunctionOutput] = useState(0);
 
   useEffect(() => {
     fetch('/time').then(res => res.json()).then(data => {
-      setCurrentTime(data.time);
+      setFunctionOutput(data.time);
     });
+  }, []);
+
+
+  useEffect(() => {
+      // Simple POST request with a JSON body using fetch
+      const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ title: 'React POST Request Example' })
+      };
+      fetch('/write', requestOptions)
+          .then(response => response.json())
+          .then(data => this.setState({ postId: data.id }));
   }, []);
 
   return (
@@ -27,7 +41,7 @@ function App() {
         >
           Learn React
         </a>
-        <p>The current time is {currentTime}.</p>
+        <p>The current time is {FunctionOutput}.</p>
       </header>
     </div>
   );
