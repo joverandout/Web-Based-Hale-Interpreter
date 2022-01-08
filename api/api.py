@@ -10,5 +10,13 @@ app = Flask(__name__)
 def get_current_time():
     test = haleMain.runInterpreter("test1.hale")
     #print(test)
-    return str(test)
+    return  {'time': str(test)}
+
+
+
+@app.route('/time')
+def get_current_time2():
+    test = haleMain.runInterpreter("test1.hale")
+    #print(test)
+    return  {'time': str(test)}
 
