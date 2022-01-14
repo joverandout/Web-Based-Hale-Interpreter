@@ -3,7 +3,7 @@ This is the subject of my Dissertation. It is a web based interpreter for my own
 
 ## Hale
 
-Hale is statically typed and purely functional, its grammar can be found in `Hale.g4`. You can test the interpreter manually by navigating to the `/api` folder and running following commands. Hale's grammar is included at the end of this `readMe`
+You can test the interpreter manually by navigating to the `/api` folder and running following commands. Hale's grammar is included at the end of this `readMe`
 
 ```
 $ python3 haleMain.py 
@@ -62,7 +62,7 @@ This will recursively print the list head and call the function again on the lis
 99
 5
 ```
-The grammar for Hale can be found in `Hale.g4`
+The grammar for Hale can also be found in `Hale.g4`
 
 ## Running
 
