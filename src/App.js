@@ -5,8 +5,12 @@ import './App.css';
 function App() {
 
   const [FunctionOutput, setFunctionOutput] = useState(0);
-  const [SetFunctionOutput, setNewFunctionOutput] = useState(0);
+  const [name, setName] = useState('');
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The name you entered was: ${name}`)
+  }
 
   // useEffect(() => {
   //     // Simple POST request with a JSON body using fetch
@@ -18,8 +22,6 @@ function App() {
   //     fetch('/write', requestOptions)
   //         .then(response => response.json());
   // }, []);
-
-
 
   useEffect(() => {
     fetch('/time').then(res => res.json()).then(data => {
@@ -33,7 +35,12 @@ function App() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: 'return("hello2");' })
+      body: JSON.stringify({ title: name })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`The name you entered was: ${name}`);
   }
 
   fetch('/write', requestOptions)
@@ -47,7 +54,17 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-
+        <form onSubmit={handleSubmit}>
+      <label>Enter your name:
+        <input 
+          type="text" 
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <input type="submit" />
+    </form>
+        <p>Name is {name}</p>
         <button onClick={buttonpress}>
           Click me!
         </button>
