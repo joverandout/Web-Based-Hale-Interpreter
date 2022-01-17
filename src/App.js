@@ -62,6 +62,11 @@ function App() {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
+      <label>Enter value : </label>
+        <textarea
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       <input type="submit" />
     </form>
         <p>Name is {name}</p>
