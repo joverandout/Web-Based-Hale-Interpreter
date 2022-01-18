@@ -49,39 +49,27 @@ function App() {
 
   return (
     <div className="App">
+
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <form onSubmit={handleSubmit}>
-      <label>Enter your name:
-        <input 
-          type="text" 
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-      <label>Enter value : </label>
+      <div class="editor-menu">
+        <button class="btn btn-dark">Dark Mode</button>
+        <button class="btn btn-light">Light Mode</button>
+        <button class="btn btn-run"><i class = "fa fa-play"></i>Run</button>
+        <button onClick={buttonpress}>Click me!</button>
+    </div>
+
+    <div class="container">
+        <div class="left">
         <textarea
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-      <input type="submit" />
-    </form>
-        <p>Name is {name}</p>
-        <button onClick={buttonpress}>
-          Click me!
-        </button>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <p>The current time is {FunctionOutput}.</p>
+        </div>
+        <div class="bar"title="Click and Drag"></div>
+        <div class="right">
+        <p>{FunctionOutput}.</p>
+        </div>
+    </div>
       </header>
     </div>
   );

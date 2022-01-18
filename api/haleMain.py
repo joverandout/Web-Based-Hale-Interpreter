@@ -467,7 +467,7 @@ def interactive():
 
 def runInterpreter(fileName):
     parse_file(fileName)
-    return returnValue
+    return returnValue[0]
 
 if __name__ == "__main__":
     returnValue = 34
