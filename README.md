@@ -65,25 +65,29 @@ This will recursively print the list head and call the function again on the lis
 The grammar for Hale can also be found in `Hale.g4`
 
 ## Running
-
-To start the flask server navigate into the `/api` folder and activate the virtual environment:
+`yarn` is required to run the project, install `yarn` on Unix systems using
 ```
-$ . venv/bin/activate
+$ npm install --global yarn
 ```
-Due to the altered `.flaskenv` file there is no need to use `EXPORT` the folder will automatically assign the `api.py`. Then run the server:
+For windows guide please consult `yarn` documentaion. To start the backend server in a terminal window run
 ```
-$ flask run
+$ yarn start-api
 ```
-This should see the following result
+This should start the backend `flask` server as follows:
 ```
- * Serving Flask app 'api.py' (lazy loading) * Environment: development
+yarn run v1.22.17
+$ cd api && venv/bin/flask run --no-debugger
+ * Serving Flask app 'api.py' (lazy loading)
+ * Environment: development
  * Debug mode: on
  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
  * Restarting with stat
- * Debugger is active!
- * Debugger PIN: 101-941-003
 ```
-Navigate to the local host url to see the website
+Now in a seperate terminal window then start up the front end with
+```
+$ yarn start
+```
+This should open the website in your browser. If not you can navigate to the URL manually
 
 ## Disclosure
 
