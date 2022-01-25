@@ -475,7 +475,7 @@ def runInterpreter(fileName):
     printVal = ""
     for value in printValues:
         print(value)
-        printVal += value
+        printVal += str(value)
         printVal += "\r\n"
     print(printVal)
     return returnValue[0], printVal
