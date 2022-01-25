@@ -18,6 +18,7 @@ def write_file():
 
 @app.route('/time')
 def get_current_time():
-    test = haleMain.runInterpreter("testx.hale")
+    test, prints = haleMain.runInterpreter("testx.hale")
     print(str(test))
-    return {'time': str(test)}
+    print(str(prints))
+    return {'time': str(test), 'prints':prints}

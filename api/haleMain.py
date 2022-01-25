@@ -7,6 +7,8 @@ from antlr4.BufferedTokenStream import BufferedTokenStream
 from antlr4.Lexer import Lexer
 from antlr4.Token import Token
 
+printValues = []
+
 class InputStream (object):
     __slots__ = ('name', 'strdata', '_index', 'data', '_size')
 
@@ -197,7 +199,8 @@ class PrintLn(BaseFunction):
         super().__init__("printline")
 
     def call(self, context, param_values):
-        print(*param_values)
+        global printValues
+        printValues.append(*param_values)
         return 1
 
 class Return(BaseFunction):
@@ -210,6 +213,8 @@ class Return(BaseFunction):
         return param_values
 
 class Function(BaseFunction):
+
+
     def __init__(self, name, parent, params, body):
         super().__init__(name)
         self._parent = parent
@@ -467,7 +472,13 @@ def interactive():
 
 def runInterpreter(fileName):
     parse_file(fileName)
-    return returnValue[0]
+    printVal = ""
+    for value in printValues:
+        print(value)
+        printVal += value
+        printVal += "\r\n"
+    print(printVal)
+    return returnValue[0], printVal
 
 if __name__ == "__main__":
     returnValue = 34
