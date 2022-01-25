@@ -87,7 +87,16 @@ Now in a seperate terminal window then start up the front end with
 ```
 $ yarn start
 ```
-This should open the website in your browser. If not you can navigate to the URL manually
+You should expect to see the following:
+```
+yarn run v1.22.17
+$ react-scripts start
+
+starting development server
+
+Compiled with warnings.
+```
+This should open the website in your browser. If not you can navigate to the URL manually. 
 
 ## Disclosure
 
