@@ -7,6 +7,7 @@ function App() {
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
+  const editor = document.querySelector(".editor");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +38,7 @@ function App() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: name })
+      body: JSON.stringify({ title: editor.textContent })
   }
 
   const handleSubmit = (event) => {
@@ -61,7 +62,9 @@ function App() {
 
     <div class="container">
         <div class="left">
-        {/* <textarea value={name} onChange={(e) => setName(e.target.value)}/> */}
+            <div class="editor" contenteditable="">
+                Write Code here...
+            </div>
         </div>
         <div class="bar"title="Click and Drag"></div>
         <div class="right">
