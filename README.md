@@ -1,5 +1,5 @@
 # Web Based Hale Interpreter
-This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpreter works fully the website currently just prints the result of the `return` function in `api/test1.hale`
+This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpreter works fully the website currently is under work. It currently has some functionality. Any Hale code written in the left hand box will run and the output will be printed to the right along with various other gubbins. The return value with be printed first and then any print lines that were called.
 
 ## Hale
 
