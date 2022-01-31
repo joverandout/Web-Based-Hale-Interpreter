@@ -12,8 +12,10 @@ app = Flask(__name__)
 def write_file():
     code = request.get_json()
     print(code['title'])
+    code_to_write = code['title']
+    code_to_write = code_to_write.replace(";", ";\n")
     with open("testx.hale", "w") as fo:
-        fo.write(code['title'])
+        fo.write(code_to_write)
     return {'time': "hello"}
 
 @app.route('/time')

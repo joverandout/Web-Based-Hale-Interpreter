@@ -52,15 +52,20 @@ html {
 
 .container {
   position: absolute;
-  bottom: 0;
+  bottom: 10;
   top: 7rem;
   width: 100%;
   display: flex;
 }
 
-.left,
-.right {
+.left{
   height: 100%;
+  width: 50%;
+  border: 1px solid #d5d5d5
+}
+
+.right{
+  height: 50%;
   width: 50%;
   border: 1px solid #d5d5d5
 }

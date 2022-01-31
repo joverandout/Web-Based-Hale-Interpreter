@@ -1,1 +1,3 @@
-def fib ::= λ x : int . x <= 1 ? x : fib (x-1) + fib (x-2);printline("NOOOOOOO");printline(listtail([1,2,3,4,5]));return(fib(5) * fib(6));
+def printlistinlines ::= λ list : do . list == [] ? printline("") : printline(listhead(list)) & printlistinlines(listtail(list));
+printlistinlines([1,2,3,4,99,5]);
+return(99*2);
