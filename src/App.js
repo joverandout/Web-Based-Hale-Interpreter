@@ -68,10 +68,12 @@ function App() {
         </div>
         <div class="bar"title="Click and Drag"></div>
         <div class="right">
-        <p>{FunctionOutput}.</p>
-        <br></br>
-        <p>{PrintOutputs}[END]</p>
-        <p>hell</p>
+        <div class="mids">
+          <p>{FunctionOutput}.</p>
+        </div>
+        <div class="mids">
+        <p>{PrintOutputs}</p>
+        </div>
         </div>
     </div>
       </header>
