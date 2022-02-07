@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import Preferences from './components/Preferences/Preferences';
 
@@ -57,15 +57,14 @@ function App() {
     <div className="App">
       <div className="wrapper">
       <h1>Application</h1>
-      <BrowserRouter>
+      <Router>
         <Routes>
-          <Route path="/dashboard">
-          </Route>
-          <Route path="/preferences">
-          </Route>
+          <Route exact path="/dashboard" element={<Dashboard />}></Route>
+          <Route exact path="/preferences"element={<Preferences />}></Route>
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
+    {/*
       <header className="App-header">
       <div class="editor-menu">
         <button class="btn">Dark Mode</button>
@@ -89,8 +88,8 @@ function App() {
         </div>
         </div>
     </div>
-      </header>
-    </div>
+      </header>*/}
+    </div> 
   );
 }
 
