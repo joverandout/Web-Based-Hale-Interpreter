@@ -1,8 +1,4 @@
 def fib ::= λ x : int . x <= 1 ? x : fib (x-1) + fib (x-2);
 def printFibs ::= λ f x : int . x > 1 ? printFibs(f, (x-1)) & printline(f(x)) : printline(f(x));
-
-# The result of the below print will be seen in the terminal not in the website
-printline(printFibs(fib, 10));
-
-# The result of the return is what will be outputted to the website
+printline(fib(10));
 return(fib(2));

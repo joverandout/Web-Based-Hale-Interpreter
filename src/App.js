@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
+import Preferences from './components/Preferences/Preferences';
 
 function App() {
 
@@ -52,12 +55,22 @@ function App() {
 
   return (
     <div className="App">
-
+      <div className="wrapper">
+      <h1>Application</h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dashboard">
+          </Route>
+          <Route path="/preferences">
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </div>
       <header className="App-header">
       <div class="editor-menu">
-        <button class="btn btn-dark">Dark Mode</button>
-        <button class="btn btn-light">Light Mode</button>
-        <button class="btn btn-run" onClick={buttonpress}>Run</button>
+        <button class="btn">Dark Mode</button>
+        <button class="btn">Light Mode</button>
+        <button class="btn" onClick={buttonpress}>Run</button>
     </div>
 
     <div class="container">
