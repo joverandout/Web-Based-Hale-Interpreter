@@ -471,6 +471,7 @@ def interactive():
             break
 
 def runInterpreter(fileName):
+    printValues.clear()
     parse_file(fileName)
     printVal = ""
     for value in printValues:
