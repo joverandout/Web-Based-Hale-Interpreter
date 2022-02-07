@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
+import Login from './components/Login/Login';
 import Preferences from './components/Preferences/Preferences';
 
 function App() {
@@ -10,7 +11,9 @@ function App() {
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
+  const [token, setToken] = useState();
   const editor = document.querySelector(".editor");
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,6 +39,8 @@ function App() {
   }, []);
 
 
+
+
   function buttonpress(){
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
@@ -52,6 +57,10 @@ function App() {
   fetch('/write', requestOptions)
       .then(response => response.json());
   };
+
+  if(!token){
+    return<Login setToken={setToken} />
+  }
 
   return (
     <div className="App">
