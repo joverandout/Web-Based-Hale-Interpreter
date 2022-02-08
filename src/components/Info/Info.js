@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Dashboard.css';
+import './Info.css';
 
-function Dashboard() {
+function Info() {
 
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
@@ -48,7 +48,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="Dashboard">
+    <div className="Info">
 
       <header className="App-header">
         <nav class="navbar navbar-dark bg-dark pt-3 pb-3">
@@ -66,8 +66,9 @@ function Dashboard() {
         </form>
       </nav>
       
+      <div>class </div>
 
-    <div class="mycontainer">
+    {/* <div class="mycontainer">
         <div class="myleft">
             <div class="myeditor" contenteditable="">
                 Write Code here...
@@ -82,10 +83,10 @@ function Dashboard() {
         <p>{PrintOutputs}</p>
         </div>
         </div>
-    </div>
+    </div>*/}
       </header>
-    </div>
+    </div> 
   );
 }
 
-export default Dashboard;
+export default Info;

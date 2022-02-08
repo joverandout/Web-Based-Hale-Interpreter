@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
+import Info from './components/Info/Info';
 import Login from './components/Login/Login';
 import Preferences from './components/Preferences/Preferences';
 import useToken from './useToken';
@@ -79,6 +80,7 @@ function App() {
         <Routes>
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
           <Route exact path="/preferences"element={<Preferences />}></Route>
+          <Route exact path="/info"element={<Info />}></Route>
         </Routes>
       </Router>
     </div>
