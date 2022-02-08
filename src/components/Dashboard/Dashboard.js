@@ -9,7 +9,7 @@ function Dashboard() {
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
-  const editor = document.querySelector(".editor");
+  const myeditor = document.querySelector(".myeditor");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -35,7 +35,7 @@ function Dashboard() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: editor.textContent })
+      body: JSON.stringify({ title: myeditor.textContent })
   }
 
   const handleSubmit = (event) => {
@@ -57,7 +57,7 @@ function Dashboard() {
           <button class="btn btn-lg btn-light" type="button">Light Mode</button>
           <button class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
           <button onClick={routeChange} class="btn btn-lg btn-info" type="button">Info</button>
-          <button class="btn btn-lg btn-success float-right" type="button">Run</button>
+          <button  onClick={buttonpress} class="btn btn-lg btn-success float-right" type="button">Run</button>
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>
@@ -65,7 +65,6 @@ function Dashboard() {
           <button class="btn btn-lg btn-danger" type="button">Sign Out</button>
         </form>
       </nav>
-      
 
     <div class="mycontainer">
         <div class="myleft">
