@@ -60,7 +60,7 @@ function Dashboard() {
       </nav>
       
 
-    {/* <div class="mycontainer">
+    <div class="mycontainer">
         <div class="myleft">
             <div class="myeditor" contenteditable="">
                 Write Code here...
@@ -75,7 +75,7 @@ function Dashboard() {
         <p>{PrintOutputs}</p>
         </div>
         </div>
-    </div> */}
+    </div>
       </header>
     </div>
   );
