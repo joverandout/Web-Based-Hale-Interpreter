@@ -1,3 +1,2 @@
-def printlistinlines ::= λ list : do . list == [] ? printline("") : printline(listhead(list)) & printlistinlines(listtail(list));
-printlistinlines([1,2,3,4,99,5]);
-return(99*2);
+printline("33 hellsao there");
+return(listhead([443,55,66]));

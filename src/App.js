@@ -1,13 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from './components/Dashboard/Dashboard';
+import Info from './components/Info/Info';
+import Login from './components/Login/Login';
+import Preferences from './components/Preferences/Preferences';
+import useToken from './useToken';
+
+function setToken(userToken) {
+  sessionStorage.setItem('token', JSON.stringify(userToken));
+}
+
+function getToken() {
+  const tokenString = sessionStorage.getItem('token');
+  const userToken = JSON.parse(tokenString);
+  return userToken?.token
+}
 
 function App() {
-
+  const { token, setToken } = useToken();
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
   const editor = document.querySelector(".editor");
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -33,6 +50,8 @@ function App() {
   }, []);
 
 
+
+
   function buttonpress(){
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
@@ -50,14 +69,27 @@ function App() {
       .then(response => response.json());
   };
 
+  if(!token){
+    return<Login setToken={setToken} />
+  }
+
   return (
     <div className="App">
-
+      <div className="wrapper">
+      <Router>
+        <Routes>
+          <Route exact path="/dashboard" element={<Dashboard />}></Route>
+          <Route exact path="/preferences"element={<Preferences />}></Route>
+          <Route exact path="/info"element={<Info />}></Route>
+        </Routes>
+      </Router>
+    </div>
+    {/*
       <header className="App-header">
       <div class="editor-menu">
-        <button class="btn btn-dark">Dark Mode</button>
-        <button class="btn btn-light">Light Mode</button>
-        <button class="btn btn-run" onClick={buttonpress}>Run</button>
+        <button class="btn">Dark Mode</button>
+        <button class="btn">Light Mode</button>
+        <button class="btn" onClick={buttonpress}>Run</button>
     </div>
 
     <div class="container">
@@ -76,8 +108,8 @@ function App() {
         </div>
         </div>
     </div>
-      </header>
-    </div>
+      </header>*/}
+    </div> 
   );
 }
 
