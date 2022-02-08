@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -42,28 +44,38 @@ function Dashboard() {
     <div className="Dashboard">
 
       <header className="App-header">
-      <div class="editor-menu">
-        <button class="btn btn-dark">Dark Mode</button>
-        <button class="btn btn-light">Light Mode</button>
-        <button class="btn btn-run" onClick={buttonpress}>Run</button>
-    </div>
+        <nav class="navbar navbar-dark bg-dark pt-3 pb-3">
+        <form class="form-inline">
+          <h1>Hale - A web based interpreter</h1>
+          <button class="btn btn-lg btn-light" type="button">Light Mode</button>
+          <button class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
+          <button class="btn btn-lg btn-info" type="button">Info</button>
+          <button class="btn btn-lg btn-success float-right" type="button">Run</button>
+        </form>
+        <form class="form-inline float-right">
+          <h1>‎</h1>
+          <button class="btn btn-lg btn-primary" type="button">Profie</button>
+          <button class="btn btn-lg btn-danger" type="button">Sign Out</button>
+        </form>
+      </nav>
+      
 
-    <div class="container">
-        <div class="left">
-            <div class="editor" contenteditable="">
+    {/* <div class="mycontainer">
+        <div class="myleft">
+            <div class="myeditor" contenteditable="">
                 Write Code here...
             </div>
         </div>
-        <div class="bar"title="Click and Drag"></div>
-        <div class="right">
-        <div class="mids">
+        <div class="mybar"title="Click and Drag"></div>
+        <div class="myright">
+        <div class="mymids">
           <p>{FunctionOutput}.</p>
         </div>
-        <div class="mids">
+        <div class="mymids">
         <p>{PrintOutputs}</p>
         </div>
         </div>
-    </div>
+    </div> */}
       </header>
     </div>
   );

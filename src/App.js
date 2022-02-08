@@ -75,7 +75,6 @@ function App() {
   return (
     <div className="App">
       <div className="wrapper">
-      <h1>Application</h1>
       <Router>
         <Routes>
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
