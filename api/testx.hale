@@ -1,3 +1,2 @@
-def fib ::= λ x : int . x <= 1 ? x : fib (x-1) + fib (x-2);
-printline(fib(10));
-return(fib(2));
+printline("33 hellsao there");
+return(listhead([443,55,66]));
