@@ -17,8 +17,13 @@ function Info() {
   }
 
   let navigate = useNavigate(); 
-  const routeChange = () =>{ 
+  const inforouteChange = () =>{ 
     let path = `../info`; 
+    navigate(path);
+  }
+
+  const dashboardrouteChange = () =>{ 
+    let path = `../dashboard`; 
     navigate(path);
   }
 
@@ -54,9 +59,8 @@ function Info() {
         <nav class="navbar navbar-dark bg-dark pt-3 pb-3">
         <form class="form-inline">
           <h1>Hale - A web based interpreter</h1>
-          <button class="btn btn-lg btn-light" type="button">Light Mode</button>
-          <button class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
-          <button onClick={routeChange} class="btn btn-lg btn-info" type="button">Info</button>
+          <button onClick={dashboardrouteChange} class="btn btn-lg btn-secondary" type="button">Dashboard</button>
+          <button onClick={inforouteChange} class="btn btn-lg btn-info" type="button">Info</button>
           <button class="btn btn-lg btn-success float-right" type="button">Run</button>
         </form>
         <form class="form-inline float-right">

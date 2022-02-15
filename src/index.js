@@ -1,8 +1,18 @@
 import React from 'react';
+import mysql from 'mysql';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+const db = mysql.createConnection({
+  user: "root",
+  host: "localhost",
+  password: "password",
+  database: "LoginSystem"
+})
+
+
 
 ReactDOM.render(
   <React.StrictMode>
@@ -10,6 +20,7 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
