@@ -1,7 +1,7 @@
 import time
 from flask import Flask
 from flask import request
-from flask import Blueprint, render_template, jsonify
+from flask import jsonify
 from inputStream import InputStream
 from CommonTokenStream import CommonTokenStream
 import haleMain
@@ -30,7 +30,6 @@ def get_current_time():
 
 @app.route('/hostlogin', methods=["POST"])
 def hostlogin():
-    print("HELLO")
     info = request.get_json()
     if info == None:
         return "No login information was provided"
@@ -73,3 +72,9 @@ def hostlogin():
     #     #Likely error is that the request did not have the fields we wanted from it
     #     return ("Bad Request, probably missing the data we want", 400)
     
+
+@app.route('/usercreate', methods=["POST"])
+def usercreate():
+    info = request.get_json()
+    if info == None:
+        return "No login information was provided"

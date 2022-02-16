@@ -45,6 +45,12 @@ function Dashboard() {
 
   fetch('/write', requestOptions)
       .then(response => response.json());
+
+     
+  fetch('/time').then(res => res.json()).then(data => {
+    setFunctionOutput(data.time);
+    setPrintOutput(data.prints);
+  });
   };
 
   return (
@@ -68,6 +74,7 @@ function Dashboard() {
 
     <div class="mycontainer">
         <div class="myleft">
+          {/* USE A LIBRARY - MONACO */}
             <div class="myeditor" contenteditable="">
                 Write Code here...
             </div>
