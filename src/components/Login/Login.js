@@ -1,18 +1,22 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-
+import axios from "axios";
 
 import './Login.css';
 
 async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(data => data.json())
+  axios({
+    method: "POST",
+    url:"/hostlogin",
+    data:{
+      email: credentials.username,
+      password: credentials.password
+     }
+  })
+
+  return({
+      token: 'test123'
+    });
 }
 
 export default function Login({ setToken }) {
