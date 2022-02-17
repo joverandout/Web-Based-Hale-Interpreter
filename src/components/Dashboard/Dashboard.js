@@ -26,8 +26,11 @@ function Dashboard() {
     navigate(path);
   }
 
-  function toggleTheme() {
-    setTheme(theme === "light" ? "vs-dark" : "light");
+  function toggleThemedark() {
+    setTheme("vs-dark");
+  }
+  function toggleThemelight() {
+    setTheme("light");
   }
 
   function buttonpress(){
@@ -55,8 +58,8 @@ function Dashboard() {
         <nav class="navbar navbar-dark bg-dark pt-3 pb-3">
         <form class="form-inline">
           <h1>Hale - A web based interpreter</h1>
-          <button class="btn btn-lg btn-light" type="button">Light Mode</button>
-          <button class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
+          <button onClick={toggleThemelight} class="btn btn-lg btn-light" type="button">Light Mode</button>
+          <button onClick={toggleThemedark} class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
           <button onClick={routeChange} class="btn btn-lg btn-info" type="button">Info</button>
           <button onClick={buttonpress} class="btn btn-lg btn-success float-right" type="button">Run</button>
         </form>
@@ -71,9 +74,10 @@ function Dashboard() {
         <div class="mynewleft">
           <div class="mymonacocontainer">
           <Editor
-            height=""
-            defaultValue="#Write a Hale Comment Here"
+            height="100%"
+            defaultValue="#Write a Hale Program Here"
             onMount={handleEditorDidMount}
+            theme={theme}
           />
          
           </div>
