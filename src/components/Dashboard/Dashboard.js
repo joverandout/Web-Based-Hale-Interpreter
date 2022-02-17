@@ -44,13 +44,16 @@ function Dashboard() {
   }
 
   fetch('/write', requestOptions)
-      .then(response => response.json());
-
-     
-  fetch('/time').then(res => res.json()).then(data => {
+  .then(res => res.json()).then(data => {
     setFunctionOutput(data.time);
     setPrintOutput(data.prints);
   });
+
+     
+  // fetch('/time').then(res => res.json()).then(data => {
+  //   setFunctionOutput(data.time);
+  //   setPrintOutput(data.prints);
+  // });
   };
 
   return (

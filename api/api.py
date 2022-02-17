@@ -19,7 +19,10 @@ def write_file():
     code_to_write = code_to_write.replace(";", ";\n")
     with open("testx.hale", "w") as fo:
         fo.write(code_to_write)
-    return {'time': "hello"}
+    test, prints = haleMain.runInterpreter("testx.hale", code_to_write)
+    print(str(test))
+    print(str(prints))
+    return {'time': str(test), 'prints':prints}
 
 @app.route('/time')
 def get_current_time():

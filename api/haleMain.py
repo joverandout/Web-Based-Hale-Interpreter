@@ -432,19 +432,17 @@ def get_tree(input_stream):
 class FileStream(InputStream):
     __slots__ = 'fileName'
 
-    def __init__(self, fileName:str, encoding:str='utf8', errors:str='strict'):
-        super().__init__(self.readDataFrom(fileName, encoding, errors))
+    def __init__(self, fileName:str, code:str, encoding:str='utf8', errors:str='strict'):
+        super().__init__(self.readDataFrom(fileName, code, encoding, errors))
         self.fileName = fileName
 
-    def readDataFrom(self, fileName:str, encoding:str, errors:str='strict'):
+    def readDataFrom(self, fileName:str, code:str, encoding:str, errors:str='strict'):
         # read binary to avoid line ending conversion
-        with open(fileName, 'rb') as file:
-            bytes = file.read()
-            return codecs.decode(bytes, encoding, errors)
+        return code
 
 
-def parse_file(filename):
-    input_stream = FileStream(filename)
+def parse_file(filename, code):
+    input_stream = FileStream(filename, code)
     tree = get_tree(input_stream)
     visitor = Visitor()
     return visitor.visit(tree)
@@ -470,9 +468,9 @@ def interactive():
         except EOFError:
             break
 
-def runInterpreter(fileName):
+def runInterpreter(fileName, code):
     printValues.clear()
-    parse_file(fileName)
+    parse_file(fileName, code)
     printVal = ""
     for value in printValues:
         print(value)
