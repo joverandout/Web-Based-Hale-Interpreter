@@ -1,3 +1,1 @@
-printline("here");
-printline("evefsaafdffrywhdefre");
-return(2);
+printline([1,2,3]);

@@ -8,6 +8,7 @@ from antlr4.Lexer import Lexer
 from antlr4.Token import Token
 
 printValues = []
+returnValue = []
 
 class InputStream (object):
     __slots__ = ('name', 'strdata', '_index', 'data', '_size')
@@ -476,7 +477,10 @@ def runInterpreter(fileName, code):
         printVal += str(value)
         printVal += "\r\n"
     print(printVal)
-    return returnValue[0], printVal
+    if len(returnValue) > 0:
+        return returnValue[0], printVal
+    else:
+        return None, printVal
 
 if __name__ == "__main__":
     returnValue = 34

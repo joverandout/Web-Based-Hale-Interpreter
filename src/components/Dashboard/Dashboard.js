@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
@@ -10,7 +10,9 @@ function Dashboard() {
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
-  const myeditor = document.querySelector(".myeditor");
+
+  const myeditor = document.querySelector("Editor");
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,25 +25,13 @@ function Dashboard() {
     navigate(path);
   }
 
-  useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setFunctionOutput(data.time);
-      setPrintOutput(data.prints);
-    });
-  }, []);
-
 
   function buttonpress(){
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: myeditor.textContent })
-  }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`The name you entered was: ${name}`);
+      body: JSON.stringify({ title: "return(22);" })
   }
 
   fetch('/write', requestOptions)
@@ -49,12 +39,6 @@ function Dashboard() {
     setFunctionOutput(data.time);
     setPrintOutput(data.prints);
   });
-
-     
-  // fetch('/time').then(res => res.json()).then(data => {
-  //   setFunctionOutput(data.time);
-  //   setPrintOutput(data.prints);
-  // });
   };
 
   return (
@@ -77,18 +61,29 @@ function Dashboard() {
       </nav>
 
     <div class="mycontainer">
-        <div class="myleft">
-          <Editor
-            height="90vh"
-            defaultValue="// some comment"
-          />
+        <div class="mynewleft">
+          <div class="mymonacocontainer">
+            <Editor
+              height="90vh"
+              theme="vs-dark"
+              defaultValue="# write a Hale program in here"
+            />
+          </div>
         </div>
-        <div class="mybar"title="Click and Drag"></div>
-        <div class="myright">
-        <div class="mymids">
+        <div class="mynewright">
+        {/* <div class="mymids">
           <p>{FunctionOutput}.</p>
         </div>
         <div class="mymids">
+        <p>{PrintOutputs}</p>
+        </div> */}
+
+        <div class="myfakeMenu">
+          <div class="fakeButtons fakeClose"></div>
+          <div class="fakeButtons fakeMinimize"></div>
+          <div class="fakeButtons fakeZoom"></div>
+        </div>
+        <div class="myfakeScreen">
         <p>{PrintOutputs}</p>
         </div>
         </div>

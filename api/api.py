@@ -24,13 +24,6 @@ def write_file():
     print(str(prints))
     return {'time': str(test), 'prints':prints}
 
-@app.route('/time')
-def get_current_time():
-    test, prints = haleMain.runInterpreter("testx.hale")
-    print(str(test))
-    print(str(prints))
-    return {'time': str(test), 'prints':prints}
-
 @app.route('/hostlogin', methods=["POST"])
 def hostlogin():
     info = request.get_json()
