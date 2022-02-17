@@ -60,8 +60,6 @@ function Info() {
         <form class="form-inline">
           <h1>Hale - A web based interpreter</h1>
           <button onClick={dashboardrouteChange} class="btn btn-lg btn-secondary" type="button">Dashboard</button>
-          <button onClick={inforouteChange} class="btn btn-lg btn-info" type="button">Info</button>
-          <button class="btn btn-lg btn-success float-right" type="button">Run</button>
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>

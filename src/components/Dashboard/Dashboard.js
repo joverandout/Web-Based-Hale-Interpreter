@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 
@@ -77,10 +78,10 @@ function Dashboard() {
 
     <div class="mycontainer">
         <div class="myleft">
-          {/* USE A LIBRARY - MONACO */}
-            <div class="myeditor" contenteditable="">
-                Write Code here...
-            </div>
+          <Editor
+            height="90vh"
+            defaultValue="// some comment"
+          />
         </div>
         <div class="mybar"title="Click and Drag"></div>
         <div class="myright">
