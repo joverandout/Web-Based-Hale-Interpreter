@@ -430,19 +430,18 @@ def get_tree(input_stream):
 
 
 class FileStream(InputStream):
-    __slots__ = 'fileName'
+    __slots__ = 'code'
 
-    def __init__(self, fileName:str, code:str, encoding:str='utf8', errors:str='strict'):
-        super().__init__(self.readDataFrom(fileName, code, encoding, errors))
-        self.fileName = fileName
+    def __init__(self, code:str):
+        super().__init__(self.readDataFrom(code))
+        self.code = code
 
-    def readDataFrom(self, fileName:str, code:str, encoding:str, errors:str='strict'):
-        # read binary to avoid line ending conversion
+    def readDataFrom(self, code:str):
         return code
 
 
 def parse_file(filename, code):
-    input_stream = FileStream(filename, code)
+    input_stream = FileStream(code)
     tree = get_tree(input_stream)
     visitor = Visitor()
     return visitor.visit(tree)
