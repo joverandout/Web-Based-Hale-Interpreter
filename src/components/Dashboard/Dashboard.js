@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import MonacoEditor from 'react-monaco-editor';
+import Editor from "@monaco-editor/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 
@@ -14,37 +14,10 @@ function Dashboard() {
   const [name, setName] = useState('');
 
   const [theme, setTheme] = useState("light");
+  const editorRef = useRef(null);
 
-  const MyEditorControl = (props) => {
-    const [ code, setCode ] = React.useState("Type your code...");
-
-  const handleOnChange = (value) => {
-     setCode(value);
-  }
-
-  const submitCode = () => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title:code })
-    }
-
-    fetch('/write', requestOptions)
-    .then(res => res.json()).then(data => {
-      setFunctionOutput(data.time);
-      setPrintOutput(data.prints);
-    });
-  }
-
-  return <>
-    <button onClick={submitCode} class="btn btn-lg btn-success float-right" type="button">Run</button>
-    <MonacoEditor onChange={handleOnChange} />
-  </>;
- }
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`The name you entered was: ${name}`)
+  function handleEditorDidMount(editor, monaco) {
+    editorRef.current = editor; 
   }
 
   let navigate = useNavigate(); 
@@ -57,6 +30,24 @@ function Dashboard() {
     setTheme(theme === "light" ? "vs-dark" : "light");
   }
 
+  function buttonpress(){
+    // Simple POST request with a JSON body using fetch
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: editorRef.current.getValue() })
+    }
+  
+    fetch('/write', requestOptions)
+    .then(res => res.json()).then(data => {
+      setFunctionOutput(data.time);
+      setPrintOutput(data.prints);
+    });
+  };
+
+
+  
+
   return (
     <div className="Dashboard">
 
@@ -67,7 +58,7 @@ function Dashboard() {
           <button class="btn btn-lg btn-light" type="button">Light Mode</button>
           <button class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
           <button onClick={routeChange} class="btn btn-lg btn-info" type="button">Info</button>
-          <button class="btn btn-lg btn-success float-right" type="button">Run</button>
+          <button onClick={buttonpress} class="btn btn-lg btn-success float-right" type="button">Run</button>
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>
@@ -79,16 +70,15 @@ function Dashboard() {
     <div class="mycontainer">
         <div class="mynewleft">
           <div class="mymonacocontainer">
-            <MyEditorControl />          
+          <Editor
+            height=""
+            defaultValue="#Write a Hale Comment Here"
+            onMount={handleEditorDidMount}
+          />
+         
           </div>
         </div>
         <div class="mynewright">
-        {/* <div class="mymids">
-          <p>{FunctionOutput}.</p>
-        </div>
-        <div class="mymids">
-        <p>{PrintOutputs}</p>
-        </div> */}
 
         <div class="myfakeMenu">
           <div class="fakeButtons fakeClose"></div>
@@ -104,5 +94,4 @@ function Dashboard() {
     </div>
   );
 }
-
 export default Dashboard;
