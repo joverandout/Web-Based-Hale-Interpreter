@@ -1,9 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
-import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react";
+import MonacoEditor from 'react-monaco-editor';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
+
+
 
 function Dashboard() {
 
@@ -11,8 +13,34 @@ function Dashboard() {
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
 
-  const myeditor = document.querySelector("Editor");
+  const [theme, setTheme] = useState("light");
 
+  const MyEditorControl = (props) => {
+    const [ code, setCode ] = React.useState("Type your code...");
+
+  const handleOnChange = (value) => {
+     setCode(value);
+  }
+
+  const submitCode = () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title:code })
+    }
+
+    fetch('/write', requestOptions)
+    .then(res => res.json()).then(data => {
+      setFunctionOutput(data.time);
+      setPrintOutput(data.prints);
+    });
+  }
+
+  return <>
+    <button onClick={submitCode} class="btn btn-lg btn-success float-right" type="button">Run</button>
+    <MonacoEditor onChange={handleOnChange} />
+  </>;
+ }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -25,21 +53,9 @@ function Dashboard() {
     navigate(path);
   }
 
-
-  function buttonpress(){
-    // Simple POST request with a JSON body using fetch
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: "return(22);" })
+  function toggleTheme() {
+    setTheme(theme === "light" ? "vs-dark" : "light");
   }
-
-  fetch('/write', requestOptions)
-  .then(res => res.json()).then(data => {
-    setFunctionOutput(data.time);
-    setPrintOutput(data.prints);
-  });
-  };
 
   return (
     <div className="Dashboard">
@@ -51,7 +67,7 @@ function Dashboard() {
           <button class="btn btn-lg btn-light" type="button">Light Mode</button>
           <button class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
           <button onClick={routeChange} class="btn btn-lg btn-info" type="button">Info</button>
-          <button  onClick={buttonpress} class="btn btn-lg btn-success float-right" type="button">Run</button>
+          <button class="btn btn-lg btn-success float-right" type="button">Run</button>
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>
@@ -63,11 +79,7 @@ function Dashboard() {
     <div class="mycontainer">
         <div class="mynewleft">
           <div class="mymonacocontainer">
-            <Editor
-              height="90vh"
-              theme="vs-dark"
-              defaultValue="# write a Hale program in here"
-            />
+            <MyEditorControl />          
           </div>
         </div>
         <div class="mynewright">
