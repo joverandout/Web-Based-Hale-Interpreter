@@ -17,9 +17,7 @@ def write_file():
     print(code['title'])
     code_to_write = code['title']
     code_to_write = code_to_write.replace(";", ";\n")
-    with open("testx.hale", "w") as fo:
-        fo.write(code_to_write)
-    test, prints = haleMain.runInterpreter("testx.hale", code_to_write)
+    test, prints = haleMain.runInterpreter(code_to_write)
     print(str(test))
     print(str(prints))
     return {'time': str(test), 'prints':prints}

@@ -441,7 +441,7 @@ class FileStream(InputStream):
         return code
 
 
-def parse_file(filename, code):
+def parse_file(code):
     input_stream = FileStream(code)
     tree = get_tree(input_stream)
     visitor = Visitor()
@@ -468,9 +468,9 @@ def interactive():
         except EOFError:
             break
 
-def runInterpreter(fileName, code):
+def runInterpreter(code):
     printValues.clear()
-    parse_file(fileName, code)
+    parse_file(code)
     printVal = ""
     for value in printValues:
         print(value)

@@ -5,8 +5,6 @@ import Editor from "@monaco-editor/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.css';
 
-
-
 function Dashboard() {
 
   const [FunctionOutput, setFunctionOutput] = useState(0);
@@ -48,9 +46,6 @@ function Dashboard() {
     });
   };
 
-
-  
-
   return (
     <div className="Dashboard">
 
@@ -79,7 +74,6 @@ function Dashboard() {
             onMount={handleEditorDidMount}
             theme={theme}
           />
-         
           </div>
         </div>
         <div class="mynewright">
