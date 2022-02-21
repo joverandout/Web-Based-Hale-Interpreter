@@ -478,9 +478,9 @@ def runInterpreter(code):
         printVal += "\r\n"
     print(printVal)
     if len(returnValue) > 0:
-        return returnValue[0], printVal
+        return returnValue[0], printValues
     else:
-        return None, printVal
+        return None, printValues
 
 if __name__ == "__main__":
     returnValue = 34

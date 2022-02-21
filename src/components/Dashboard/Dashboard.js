@@ -10,9 +10,12 @@ function Dashboard() {
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
+  const [result, setResult] = useState([]);
 
   const [theme, setTheme] = useState("light");
   const editorRef = useRef(null);
+
+  var arr = ["dog", "cat"];
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor; 
@@ -43,6 +46,19 @@ function Dashboard() {
     .then(res => res.json()).then(data => {
       setFunctionOutput(data.time);
       setPrintOutput(data.prints);
+      setResult(Object.keys(PrintOutputs).map((key) => PrintOutputs[key]));
+      console.log(PrintOutputs);
+      console.log(typeof(PrintOutputs));
+      console.log(PrintOutputs.values());
+      var iterator = PrintOutputs.values();
+
+      for (let letter of iterator) {
+        arr.push(letter);
+        console.log(letter);
+      }
+      console.log(arr);
+
+      setResult(arr);
     });
   };
 
@@ -84,9 +100,11 @@ function Dashboard() {
           <div class="fakeButtons fakeZoom"></div>
         </div>
         <div class="myfakeScreen">
-        <p>{PrintOutputs}</p>
+          <div>
+            {result.map(value => <p>{value}</p>)}
+          </div>
         </div>
-        </div>
+      </div>
     </div>
       </header>
     </div>
