@@ -84,6 +84,11 @@ function Dashboard() {
           <div class="mymonacocontainer">
           <Editor
             height="100%"
+            options={{
+              minimap: {
+                enabled: false,
+              },
+            }}
             defaultValue="#Write a Hale Program Here"
             onMount={handleEditorDidMount}
             theme={theme}
@@ -99,7 +104,7 @@ function Dashboard() {
         </div>
         <div class="myfakeScreen">
           <div>
-            {result.map(value => <p>{value}</p>)}
+            {result.map(value => <p class="line4 terminalp">{value}</p>)}
           </div>
         </div>
       </div>

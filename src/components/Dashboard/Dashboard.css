@@ -150,6 +150,7 @@ h1{
   position: relative;
   text-align: left;
   font-size: 1.25em;
+  margin:0;
   font-family: monospace;
   white-space: normal;
   overflow: hidden;
