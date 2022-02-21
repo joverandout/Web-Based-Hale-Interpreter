@@ -15,7 +15,7 @@ function Dashboard() {
   const [theme, setTheme] = useState("light");
   const editorRef = useRef(null);
 
-  var arr = ["dog", "cat"];
+  var arr = [];
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor; 
