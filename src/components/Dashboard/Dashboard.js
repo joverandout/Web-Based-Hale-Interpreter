@@ -44,21 +44,19 @@ function Dashboard() {
   
     fetch('/write', requestOptions)
     .then(res => res.json()).then(data => {
-      setFunctionOutput(data.time);
-      setPrintOutput(data.prints);
-      setResult(Object.keys(PrintOutputs).map((key) => PrintOutputs[key]));
-      console.log(PrintOutputs);
-      console.log(typeof(PrintOutputs));
-      console.log(PrintOutputs.values());
-      var iterator = PrintOutputs.values();
+      setResult(Object.keys(data.prints).map((key) => data.prints[key]));
+      //console.log(PrintOutputs);
+      // console.log(typeof(PrintOutputs));
+      // console.log(PrintOutputs.values());
+      // var iterator = PrintOutputs.values();
 
-      for (let letter of iterator) {
-        arr.push(letter);
-        console.log(letter);
-      }
-      console.log(arr);
+      // for (let letter of iterator) {
+      //   arr.push(letter);
+      //   console.log(letter);
+      // }
+      // console.log(arr);
 
-      setResult(arr);
+      // setResult(arr);
     });
   };
 
