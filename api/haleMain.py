@@ -6,9 +6,16 @@ from hale.HaleParser import HaleParser
 from antlr4.BufferedTokenStream import BufferedTokenStream
 from antlr4.Lexer import Lexer
 from antlr4.Token import Token
+from antlr4.error.ErrorListener import ErrorListener
 
 printValues = []
 returnValue = []
+
+class MyErrorListener(ErrorListener):
+    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        print("ERROR: when parsing line %d column %d: %s\n" % \
+                        (line, column, msg))
+                        
 
 class InputStream (object):
     __slots__ = ('name', 'strdata', '_index', 'data', '_size')
@@ -424,10 +431,16 @@ class Visitor(HaleVisitor):
 
 
 def get_tree(input_stream):
+    error_listener = MyErrorListener()
     lexer = HaleLexer(input_stream)
+    lexer.removeErrorListeners()
+    lexer.addErrorListener(error_listener)
     tokens = CommonTokenStream(lexer)
     parser = HaleParser(tokens)
+    parser.removeErrorListeners()
+    parser.addErrorListener(error_listener)
     return parser.statements()
+
 
 
 class FileStream(InputStream):
