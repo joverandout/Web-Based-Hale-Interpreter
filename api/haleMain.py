@@ -485,6 +485,7 @@ def interactive():
 
 def runInterpreter(code):
     printValues.clear()
+    errors.clear()
     parse_file(code)
     printVal = ""
     for value in printValues:
