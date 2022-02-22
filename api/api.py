@@ -17,10 +17,13 @@ def write_file():
     print(code['title'])
     code_to_write = code['title']
     code_to_write = code_to_write.replace(";", ";\n")
-    test, prints = haleMain.runInterpreter(code_to_write)
+    test, prints, errors = haleMain.runInterpreter(code_to_write)
     print(str(test))
     print(str(prints))
-    return {'time': str(test), 'prints':prints}
+    errorbool = False
+    if(len(errors)):
+        errorbool = True
+    return {'time': str(test), 'prints':prints, 'errorbool':errorbool, 'errors':errors}
 
 @app.route('/hostlogin', methods=["POST"])
 def hostlogin():

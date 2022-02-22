@@ -10,11 +10,13 @@ from antlr4.error.ErrorListener import ErrorListener
 
 printValues = []
 returnValue = []
+errors = []
 
 class MyErrorListener(ErrorListener):
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
-        print("ERROR: when parsing line %d column %d: %s\n" % \
+        temperror = ("SYNTAX ERROR: when parsing line %d column %d: %s\n" % \
                         (line, column, msg))
+        errors.append(temperror)
                         
 
 class InputStream (object):
@@ -490,10 +492,13 @@ def runInterpreter(code):
         printVal += str(value)
         printVal += "\r\n"
     print(printVal)
+    print("###########")
+    print(errors)
+    print("###########")
     if len(returnValue) > 0:
-        return returnValue[0], printValues
+        return returnValue[0], printValues, errors
     else:
-        return None, printValues
+        return None, printValues, errors
 
 if __name__ == "__main__":
     returnValue = 34

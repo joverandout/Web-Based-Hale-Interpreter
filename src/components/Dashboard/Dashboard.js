@@ -44,7 +44,12 @@ function Dashboard() {
   
     fetch('/write', requestOptions)
     .then(res => res.json()).then(data => {
-      setResult(Object.keys(data.prints).map((key) => data.prints[key]));
+      if(data.errorbool == false){
+        setResult(Object.keys(data.prints).map((key) => data.prints[key]));
+      }
+      else{
+        setResult(Object.keys(data.errors).map((key) => data.errors[key]))
+      }
       //console.log(PrintOutputs);
       // console.log(typeof(PrintOutputs));
       // console.log(PrintOutputs.values());
