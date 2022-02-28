@@ -8,8 +8,9 @@ html {
   font-size: 62.5%;
 }
 
-.accordianny {
-  font-size: 120;
+.x-acc-item .x-acc-header .x-acc-header-content {
+  font-size: 22px;
+  font-weight: 700;
 }
 
 .myeditor-menu{

@@ -78,6 +78,7 @@ function Dashboard() {
           <button onClick={toggleThemedark} class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
           <button onClick={routeChange} class="btn btn-lg btn-info" type="button">Info</button>
           <button onClick={buttonpress} class="btn btn-lg btn-success float-right" type="button">Run</button>
+          <button onClick={buttonpress} class="btn btn-lg btn-warning float-right" type="button">Save</button>
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>
@@ -131,13 +132,7 @@ function Dashboard() {
           <Accordion.Item eventKey="1">
             <Accordion.Header>Accordion Item #2</Accordion.Header>
             <Accordion.Body>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-              est laborum.
+
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>

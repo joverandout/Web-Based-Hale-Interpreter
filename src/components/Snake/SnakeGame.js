@@ -21,8 +21,8 @@ class SnakeGame extends React.Component {
       direction: 'right',
       directionChanged: false,
       isGameOver: false,
-      snakeColor: this.props.snakeColor || this.getRandomColor(),
-      appleColor: this.props.appleColor || this.getRandomColor(),
+      snakeColor: '#00FF00',
+      appleColor: '#FF0000',
       score: 0,
       highScore: Number(localStorage.getItem('snakeHighScore')) || 0,
       newHighScore: false,
@@ -37,7 +37,7 @@ class SnakeGame extends React.Component {
 
   initGame() {
     // Game size initialization
-    let percentageWidth = this.props.percentageWidth || 40
+    let percentageWidth = 70
     let width =
       document.getElementById('GameBoard').parentElement.offsetWidth *
       (percentageWidth / 100)
@@ -146,19 +146,13 @@ class SnakeGame extends React.Component {
       directionChanged: false,
       isGameOver: false,
       gameLoopTimeout: 50,
-      snakeColor: this.getRandomColor(),
-      appleColor: this.getRandomColor(),
+      snakeColor: '#00FF00',
+      appleColor: '#FF0000',
       score: 0,
       newHighScore: false,
     })
   }
 
-  getRandomColor() {
-    let hexa = '0123456789ABCDEF'
-    let color = '#'
-    for (let i = 0; i < 6; i++) color += hexa[Math.floor(Math.random() * 16)]
-    return color
-  }
 
   moveSnake() {
     let snake = this.state.snake
