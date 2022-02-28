@@ -46,7 +46,7 @@ class InputStream (object):
     def consume(self):
         if self._index >= self._size:
             assert self.LA(1) == Token.EOF
-            raise Exception("cannot consume EOF")
+            errors.append("LOGICAL ERROR: cannot consume EOF")
         self._index += 1
 
     def LA(self, offset: int):
@@ -160,7 +160,7 @@ class Split(BaseFunction):
         p = param_values[0]
         if p:
             return (p[0], p[1:])
-        raise Exception("Empty list")
+        errors.append("LOGICAL ERROR: Cannot use 'listsplit' on an empty list")
 
 
 class Head(BaseFunction):
@@ -171,7 +171,7 @@ class Head(BaseFunction):
         p = param_values[0]
         if p:
             return p[0]
-        raise Exception("Empty list")
+        errors.append("LOGICAL ERROR: Cannot use 'listhead' on an empty list")
 
 class Tail(BaseFunction):
     def __init__(self):
@@ -181,7 +181,7 @@ class Tail(BaseFunction):
         p = param_values[0]
         if p:
             return p[1:]
-        raise Exception("Empty list")
+        errors.append("LOGICAL ERROR: Cannot use 'listtail' on an empty list")
 
 class Length(BaseFunction):
     def __init__(self):
@@ -191,7 +191,7 @@ class Length(BaseFunction):
         p = param_values[0]
         if p:
             return len(p)
-        raise Exception("Empty list")
+        errors.append("LOGICAL ERROR: Cannot use 'listlength' on an empty list")
 
 
 class Map(BaseFunction):
@@ -271,11 +271,11 @@ class Visitor(HaleVisitor):
                 return value
         if name in self._functions:
             return self._functions[name]
-        raise KeyError(name)
+        errors.append("LOGICAL ERROR: Variable '"+  name +"' is called but not defined")
 
     def set_var(self, name, value):
         if name in self._context_stack[-1]:
-            raise Exception("Variable already defined")
+            errors.append("LOGICAL ERROR: Variable '"+  name +"' is defined twice")
         self._context_stack[-1][name] = value
 
     def visitFuncdef(self, context):
@@ -309,7 +309,8 @@ class Visitor(HaleVisitor):
             var_values = (var_values,)
 
         if len(var_names) != len(var_values):
-            raise Exception("Unable to match all variables")
+            errors.append("LOGICAL ERROR: unable to match all variables")
+
 
         for k, v in zip(var_names, var_values):
             self.set_var(k.getText(), v)
@@ -480,6 +481,7 @@ def interactive():
                 visitor.visit(get_tree(input_stream))
         except KeyError as e:
             print(f"Undefined variable {e}")
+            errors.append("LOGICAL ERROR: Undefined variable '"+ e +"'")
         except EOFError:
             break
 

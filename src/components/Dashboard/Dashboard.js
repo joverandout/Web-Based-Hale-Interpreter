@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import Editor from "@monaco-editor/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Accordion from 'react-bootstrap/Accordion'
+import SnakeGame from '../Snake/SnakeGame.js'
 import './Dashboard.css';
 
 function Dashboard() {
@@ -15,7 +17,7 @@ function Dashboard() {
   const [theme, setTheme] = useState("light");
   const editorRef = useRef(null);
 
-  var arr = [];
+
 
   function handleEditorDidMount(editor, monaco) {
     editorRef.current = editor; 
@@ -112,7 +114,44 @@ function Dashboard() {
             {result.map(value => <p class="line4 terminalp">{value}</p>)}
           </div>
         </div>
+
+
+        <br></br>
+
+
+        <div class="accordianny">
+        <Accordion defaultActiveKey={['0']} alwaysOpen>
+          <Accordion.Item eventKey="0">
+            <Accordion.Header>Task 1</Accordion.Header>
+            <Accordion.Body>
+              Define 4 functions called, 'moveup', 'movedown', 'moveleft', 'moveright', which each take 2 integers the x and y coordinates of the head of the snake and adjust
+              it accordingly. Use 'printline' to test your code to make sure it works in the terminal before seeing if it has allowed the snake to move. 
+            </Accordion.Body>
+          </Accordion.Item>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header>Accordion Item #2</Accordion.Header>
+            <Accordion.Body>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+              veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+              commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+              est laborum.
+            </Accordion.Body>
+          </Accordion.Item>
+        </Accordion>
+        </div>
+
+        <br></br>  
+        
+        <div>
+          <SnakeGame />
+        </div>
+
+
       </div>
+      
     </div>
       </header>
     </div>
