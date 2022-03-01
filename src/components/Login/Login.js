@@ -5,17 +5,21 @@ import axios from "axios";
 import './Login.css';
 
 async function loginUser(credentials) {
-  axios({
+  const responsey = await axios({
     method: "POST",
     url:"/hostlogin",
     data:{
       email: credentials.username,
       password: credentials.password
      }
+    }
+  ).then((response)=>{
+    return response
+    // axios returns API response body in .data
   })
-
+  console.log(responsey.data.token)
   return({
-      token: 'test123'
+      token: responsey.data.token
     });
 }
 
@@ -30,8 +34,9 @@ export default function Login({ setToken }) {
           password
         });
         setToken(token);
+        console.log("HHHHHHHHHhhhhhh")
+        console.log(token)
     }
-    
     return(
       
         <div className="login-wrapper">

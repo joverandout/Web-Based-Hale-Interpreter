@@ -12,11 +12,10 @@ function Dashboard() {
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(["Console - use this to test your code with 'RUN' before using 'SAVE' to see it's effects in game"]);
 
   const [theme, setTheme] = useState("light");
   const editorRef = useRef(null);
-
 
 
   function handleEditorDidMount(editor, monaco) {

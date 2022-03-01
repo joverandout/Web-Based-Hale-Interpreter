@@ -28,46 +28,41 @@ def write_file():
 @app.route('/hostlogin', methods=["POST"])
 def hostlogin():
     info = request.get_json()
+    print(info)
+    print("no login info")
     if info == None:
-        return "No login information was provided"
+        return ("No login information was provided",400)
     print("Info")
     print(info)
-    returnDict = dict()
-    returnDict["token"] = 'test123'
-    return(jsonify(returnDict))
 
     #Dont actually know what to do if parsing fails. info will be an error
-    # try:
-    #     username = info["username"]
-    #     password = info["password"]
+    try:
+        username = info["email"]
+        password = info["password"]
 
-    #     hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
-    #     print(hashed_password)
-    #     succesful_login = False
+        # hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        # print(hashed_password)
+        succesful_login = False
 
-    #     #logic to determine if the user is in the database,
-    #     with sqlite3.connect("database.db") as con:
-    #         print(hashed_password)
-    #         print("Here")
-    #         cur = con.cursor()
-    #         query = "SELECT HostID, Password FROM HOSTS WHERE username = '" + username + "'"
-    #         cur.execute(query)
-    #         data = cur.fetchall()
-    #         for each in data:
-    #             if each[1] == hashed_password:
-    #                 succesful_login = True
-    #                 logged_in_id = each[0]
-
-    #                 #DO THIS RETURN HOST ID 
-    #                 returnDict = dict()
-    #                 returnDict["hostid"] = logged_in_id
-    #                 return jsonify(returnDict)
+        #logic to determine if the user is in the database,
+        with sqlite3.connect("APIData.db") as con:
+            cur = con.cursor()
+            query = "SELECT Username, Password FROM USERS WHERE username = '" + username + "'"
+            cur.execute(query)
+            data = cur.fetchall()
+            if data[0][1] == password:
+                succesful_login = True
+                print("HEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRREEEEEEEEEEEE")
+                #DO THIS RETURN HOST ID 
+                returnDict = dict()
+                returnDict["token"] = 'token1234'
+                return jsonify(returnDict)
         
-    #     if(not succesful_login):
-    #         return ("wrong password",400)
-    # except:
-    #     #Likely error is that the request did not have the fields we wanted from it
-    #     return ("Bad Request, probably missing the data we want", 400)
+        if(not succesful_login):
+            return ("wrong password",400)
+    except:
+        #Likely error is that the request did not have the fields we wanted from it
+        return ("Bad Request, probably missing the data we want", 400)
     
 
 @app.route('/usercreate', methods=["POST"])

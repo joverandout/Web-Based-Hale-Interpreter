@@ -44,6 +44,7 @@ class SnakeGame extends React.Component {
     width -= width % 30
     if (width < 30) width = 30
     let height = (width / 3) * 2
+    
     let blockWidth = width / 30
     let blockHeight = height / 20
 
@@ -82,6 +83,8 @@ class SnakeGame extends React.Component {
       snake,
       apple: { Xpos: appleXpos, Ypos: appleYpos },
     })
+
+    this.state.isGameOver = true;
   }
 
   gameLoop() {
@@ -281,8 +284,8 @@ class SnakeGame extends React.Component {
   }
 
   moveHeadRight() {
-    let width = this.state.width
     let blockWidth = this.state.blockWidth
+    let width = this.state.width
     let snake = this.state.snake
     snake[0].Xpos =
       snake[0].Xpos >= width - blockWidth ? 0 : snake[0].Xpos + blockWidth
@@ -367,8 +370,8 @@ class SnakeGame extends React.Component {
       <div
         id='GameBoard'
         style={{
-          width: this.state.width,
-          height: this.state.height,
+          width: this.state.width + this.state.blockWidth,
+          height: this.state.height + this.state.blockHeight,
           borderWidth: this.state.width / 50,
         }}>
         {this.state.snake.map((snakePart, index) => {
