@@ -17,13 +17,12 @@ async function loginUser(credentials) {
     return response
     // axios returns API response body in .data
   })
-  console.log(responsey.data.token)
   return({
-      token: responsey.data.token
+      token: responsey.data.token,
     });
 }
 
-export default function Login({ setToken }) {
+export default function Login({ setToken, setUserNameCurr }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -34,7 +33,11 @@ export default function Login({ setToken }) {
           password
         });
         setToken(token);
-        console.log("HHHHHHHHHhhhhhh")
+        // if(token == 'token1234'){
+          const UserNameCurr = { UserNameCurr: username}
+          setUserNameCurr(UserNameCurr)
+          console.log(UserNameCurr)
+        // }
         console.log(token)
     }
     return(

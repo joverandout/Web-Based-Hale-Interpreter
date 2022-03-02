@@ -7,19 +7,12 @@ import Info from './components/Info/Info';
 import Login from './components/Login/Login';
 import Preferences from './components/Preferences/Preferences';
 import useToken from './useToken';
+import useUserNameCurr from './useUserNameCurr';
 
-function setToken(userToken) {
-  sessionStorage.setItem('token', JSON.stringify(userToken));
-}
-
-function getToken() {
-  const tokenString = sessionStorage.getItem('token');
-  const userToken = JSON.parse(tokenString);
-  return userToken?.token
-}
 
 function App() {
   const { token, setToken } = useToken();
+  const { UserNameCurr, setUserNameCurr} = useUserNameCurr();
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
@@ -49,9 +42,6 @@ function App() {
     });
   }, []);
 
-
-
-
   function buttonpress(){
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
@@ -69,8 +59,16 @@ function App() {
       .then(response => response.json());
   };
 
+  console.log("===========")
+  console.log(token)
+  // console.log(token.tokenelem)
+  console.log(UserNameCurr)
+  console.log("===========")
+
   if(!token){
-    return<Login setToken={setToken} />
+    console.log("no token")
+    console.log(token)
+    return<Login setToken={setToken} setUserNameCurr = {setUserNameCurr}/>
   }
   
   return (

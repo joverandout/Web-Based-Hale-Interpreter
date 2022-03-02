@@ -71,7 +71,7 @@ function Dashboard() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: editorRef.current.getValue() })
+      body: JSON.stringify({ title: editorRef.current.getValue(), username: 'joverandout@gmail.com' })
     }
   
     fetch('/save', requestOptions)

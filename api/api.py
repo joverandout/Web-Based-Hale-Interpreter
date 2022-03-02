@@ -14,12 +14,9 @@ app = Flask(__name__)
 @app.route('/write', methods = ['POST'])
 def write_file():
     code = request.get_json()
-    print(code['title'])
     code_to_write = code['title']
     code_to_write = code_to_write.replace(";", ";\n")
     test, prints, errors = haleMain.runInterpreter(code_to_write)
-    print(str(test))
-    print(str(prints))
     errorbool = False
     if(len(errors)):
         errorbool = True
@@ -29,6 +26,7 @@ def write_file():
 def save_file():
     code = request.get_json()
     print(code['title'])
+    username = code['username']
     code_to_write = code['title']
     code_to_write = code_to_write.replace(";", ";\n")
     array_of_code = code_to_write.split("\n")
@@ -36,10 +34,9 @@ def save_file():
         for code in array_of_code:
             if(code):
                 if code.startswith('def moveup'):
-                    print("TRUEEEE")
                     with sqlite3.connect("APIData.db") as con:
                         cur = con.cursor()
-                        query = "UPDATE USERS SET moveUp = '" + code + "' WHERE Username = 'joverandout@gmail.com';"
+                        query = "UPDATE TASK1 SET moveUp = '" + code + "' WHERE Username = '"+ username +"';"
                         cur.execute(query)
     except:
         return {'errorbool': True}
@@ -48,12 +45,8 @@ def save_file():
 @app.route('/hostlogin', methods=["POST"])
 def hostlogin():
     info = request.get_json()
-    print(info)
-    print("no login info")
     if info == None:
         return ("No login information was provided",400)
-    print("Info")
-    print(info)
 
     #Dont actually know what to do if parsing fails. info will be an error
     try:
@@ -72,10 +65,10 @@ def hostlogin():
             data = cur.fetchall()
             if data[0][1] == password:
                 succesful_login = True
-                print("HEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRREEEEEEEEEEEE")
                 #DO THIS RETURN HOST ID 
                 returnDict = dict()
                 returnDict["token"] = 'token1234'
+                returnDict["username"] = username
                 return jsonify(returnDict)
         
         if(not succesful_login):
