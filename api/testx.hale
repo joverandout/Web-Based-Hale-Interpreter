@@ -3,3 +3,6 @@ def fib ::= λ x : int . x <= 1 ? x : fib (x-1) + fib (x-2);
 printline(fib(7));
 
 printline(fib(3));
+
+
+def moveup ::= λ x y : int . x + 1;

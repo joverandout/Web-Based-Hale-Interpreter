@@ -25,6 +25,26 @@ def write_file():
         errorbool = True
     return {'time': str(test), 'prints':prints, 'errorbool':errorbool, 'errors':errors}
 
+@app.route('/save', methods = ['POST'])
+def save_file():
+    code = request.get_json()
+    print(code['title'])
+    code_to_write = code['title']
+    code_to_write = code_to_write.replace(";", ";\n")
+    array_of_code = code_to_write.split("\n")
+    try:
+        for code in array_of_code:
+            if(code):
+                if code.startswith('def moveup'):
+                    print("TRUEEEE")
+                    with sqlite3.connect("APIData.db") as con:
+                        cur = con.cursor()
+                        query = "UPDATE USERS SET moveUp = '" + code + "' WHERE Username = 'joverandout@gmail.com';"
+                        cur.execute(query)
+    except:
+        return {'errorbool': True}
+    return {'errorbool': False}
+
 @app.route('/hostlogin', methods=["POST"])
 def hostlogin():
     info = request.get_json()

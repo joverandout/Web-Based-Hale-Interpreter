@@ -66,6 +66,24 @@ function Dashboard() {
     });
   };
 
+  function savebuttonpress(){
+    // Simple POST request with a JSON body using fetch
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: editorRef.current.getValue() })
+    }
+  
+    fetch('/save', requestOptions)
+    .then(res => res.json()).then(data => {
+      if(data.errorbool == false){
+      }
+      else{
+      }
+    });
+  };
+
+
   return (
     <div className="Dashboard">
 
@@ -77,7 +95,7 @@ function Dashboard() {
           <button onClick={toggleThemedark} class="btn btn-lg btn-secondary" type="button">Dark Mode</button>
           <button onClick={routeChange} class="btn btn-lg btn-info" type="button">Info</button>
           <button onClick={buttonpress} class="btn btn-lg btn-success float-right" type="button">Run</button>
-          <button onClick={buttonpress} class="btn btn-lg btn-warning float-right" type="button">Save</button>
+          <button onClick={savebuttonpress} class="btn btn-lg btn-warning float-right" type="button">Save</button>
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>
