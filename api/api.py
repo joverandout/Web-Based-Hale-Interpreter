@@ -30,14 +30,18 @@ def save_file():
     code_to_write = code['title']
     code_to_write = code_to_write.replace(";", ";\n")
     array_of_code = code_to_write.split("\n")
+    task1 = ["moveup", "moveleft", "moveright", "movedown"]
     try:
         for code in array_of_code:
             if(code):
-                if code.startswith('def moveup'):
-                    with sqlite3.connect("APIData.db") as con:
-                        cur = con.cursor()
-                        query = "UPDATE TASK1 SET moveUp = '" + code + "' WHERE Username = '"+ username +"';"
-                        cur.execute(query)
+                found = False
+                for function in task1:
+                    if (not found) and code.startswith('def ' + function):
+                        found = True
+                        with sqlite3.connect("APIData.db") as con:
+                            cur = con.cursor()
+                            query = "UPDATE TASK1 SET "+ function + " = '" + code + "' WHERE Username = '"+ username +"';"
+                            cur.execute(query)
     except:
         return {'errorbool': True}
     return {'errorbool': False}
