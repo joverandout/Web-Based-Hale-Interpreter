@@ -6,12 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Accordion from 'react-bootstrap/Accordion'
 import SnakeGame from '../Snake/SnakeGame.js'
 import './Dashboard.css';
+import useUserNameCurr from '../../useUserNameCurr.js';
 
 function Dashboard() {
 
-  const [FunctionOutput, setFunctionOutput] = useState(0);
-  const [PrintOutputs, setPrintOutput] = useState(0);
-  const [name, setName] = useState('');
+  const { UserNameCurr, setUserNameCurr} = useUserNameCurr();
+
   const [result, setResult] = useState(["Console - use this to test your code with 'RUN' before using 'SAVE' to see it's effects in game"]);
 
   const [theme, setTheme] = useState("light");
@@ -71,7 +71,7 @@ function Dashboard() {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: editorRef.current.getValue(), username: 'joverandout@gmail.com' })
+      body: JSON.stringify({ title: editorRef.current.getValue(), username: UserNameCurr })
     }
   
     fetch('/save', requestOptions)
