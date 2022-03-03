@@ -43,8 +43,10 @@ export default function Login({ setToken, setUserNameCurr }) {
     return(
       
         <div className="login-wrapper">
-            <h1>Hale - A Web Based Interpreter</h1>
-            <h2>Please login</h2>
+            <h2 class="title">Hale - A Web Based Interpreter</h2>
+            <br></br>
+            <br></br>
+            <h3>Please login</h3>
             <form onSubmit={handleSubmit}>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
@@ -55,13 +57,17 @@ export default function Login({ setToken, setUserNameCurr }) {
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" class="form-control input-lg" id="exampleInputPassword1" placeholder="Password" onChange={e => setPassword(e.target.value)}></input>
               </div>
-              <div class="form-check">
+              {/* <div class="form-check">
                 <input type="checkbox" class="form-check-input input-lg" id="exampleCheck1"></input>
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
+              </div> */}
+              <br></br>
+              <button type="submit" class="btn btn-primary"><div class="btntextloginpage">Submit</div></button>
             </form>
         </div>
+
+
+
     )
 }
 

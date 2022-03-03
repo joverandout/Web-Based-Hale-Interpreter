@@ -2,6 +2,10 @@ body {
     background-color: #c3aae9;
 }
 
+
+.title{
+    text-align: center;
+}
 /* h1{
     color:black;
     font-size: 64px;
@@ -11,6 +15,22 @@ h2{
     color:black;
     font-size: 32px;
 } */
+
+.form-group{
+    font-size: 16px;
+}
+
+.form-control.input-lg{
+    font-size: 16px;
+}
+
+.form-text.text-muted{
+    font-size: 10px;
+}
+
+.btntextloginpage{
+    font-size: 16px;
+}
 
 .login-wrapper {
     background-color: #c3aae9;

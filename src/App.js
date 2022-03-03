@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Dashboard from './components/Dashboard/Dashboard';
 import Info from './components/Info/Info';
 import Login from './components/Login/Login';
@@ -18,7 +17,7 @@ function App() {
   const [name, setName] = useState('');
   const editor = document.querySelector(".editor");
 
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
     alert(`The name you entered was: ${name}`)
@@ -76,6 +75,10 @@ function App() {
       <div className="wrapper">
       <Router>
         <Routes>
+          <Route
+            path="/"
+            element={<Navigate to="/dashboard" />}
+          />
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
           <Route exact path="/preferences"element={<Preferences />}></Route>
           <Route exact path="/info"element={<Info />}></Route>
