@@ -8,6 +8,31 @@ html {
   font-size: 62.5%;
 }
 
+.code{
+  font-size: 1em;
+}
+
+.column {
+  float: left;
+  width: 50%;
+  text-align: center;
+
+  }
+
+
+.columnheader{
+  font-size: 22px;
+  text-align: center;
+}
+
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .photo {
   height: 100px;
   width: 100px; 

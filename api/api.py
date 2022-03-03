@@ -17,10 +17,12 @@ def get_profile():
     profile = json['username']
     with sqlite3.connect("APIData.db") as con:
         cur = con.cursor()
-        query = "SELECT * FROM TASK1 WHERE username = '" + profile + "'"
+        query = "SELECT spaceForward, equalPos, pieceAt, pawnMoveForward FROM TASK1 WHERE username = '" + profile + "'"
         cur.execute(query)
         data = cur.fetchall()
-        return jsonify(data)
+        print("here")
+        print(data)
+        return {'spaceForward':data[0][0], 'equalPos':data[0][1], 'pieceAt':data[0][2], 'pawnMoveForward':data[0][3]}
 
 @app.route('/getname', methods=['POST'])
 def get_name():
