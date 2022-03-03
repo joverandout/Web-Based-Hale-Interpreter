@@ -55,7 +55,7 @@ def save_file():
     code_to_write = code['title']
     code_to_write = code_to_write.replace(";", ";\n")
     array_of_code = code_to_write.split("\n")
-    task1 = ["moveup", "moveleft", "moveright", "movedown"]
+    task1 = ["spaceForward", "equalPos", "pieceAt", "pawnMoveForward"]
     try:
         for code in array_of_code:
             if(code):

@@ -183,6 +183,26 @@ class Tail(BaseFunction):
             return p[1:]
         errors.append("LOGICAL ERROR: Cannot use 'listtail' on an empty list")
 
+class Init(BaseFunction):
+    def __init__(self):
+        super().__init__("listinit")
+
+    def call(self, context, param_values):
+        p = param_values[0]
+        if p:
+            return p[:-1]
+        errors.append("LOGICAL ERROR: Cannot use 'listinit' on an empty list")
+
+class End(BaseFunction):
+    def __init__(self):
+        super().__init__("listend")
+
+    def call(self, context, param_values):
+        p = param_values[0]
+        if p:
+            return p[-1]
+        errors.append("LOGICAL ERROR: Cannot use 'listend' on an empty list")
+
 class Length(BaseFunction):
     def __init__(self):
         super().__init__("listlength")
@@ -249,6 +269,8 @@ class Visitor(HaleVisitor):
         self._add_function(Head())
         self._add_function(Map())
         self._add_function(Tail())
+        self._add_function(Init())
+        self._add_function(End())
         self._add_function(Length())
         self._add_function(Return())
 
@@ -491,13 +513,8 @@ def runInterpreter(code):
     parse_file(code)
     printVal = ""
     for value in printValues:
-        print(value)
         printVal += str(value)
         printVal += "\r\n"
-    print(printVal)
-    print("###########")
-    print(errors)
-    print("###########")
     if len(returnValue) > 0:
         return returnValue[0], printValues, errors
     else:

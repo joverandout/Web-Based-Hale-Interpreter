@@ -5,7 +5,4 @@ printline(fib(7));
 printline(fib(3));
 
 
-def moveup ::= λ x y : int . y + 1;
-def movedown ::= λ x y : int . y - 1;
-def moveleft ::= λ x y : int . x + 1;
-def moveright ::= λ x y : int . x - 1;
+def equalPos ::= λ x1 y1 x2 y2 : bool . (x1 == x2) & (y1 == y2) ? True : False ;

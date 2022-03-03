@@ -136,7 +136,7 @@ function Dashboard() {
         </div>
         <div class="myfakeScreen">
           <div>
-            {result.map(value => <p class="line4 terminalp">{value}</p>)}
+            {result.map(value => <p class="line4 terminalp">{value.toString()}</p>)}
           </div>
         </div>
 
@@ -147,14 +147,22 @@ function Dashboard() {
         <div class="accordianny">
         <Accordion defaultActiveKey={['0']} alwaysOpen>
           <Accordion.Item eventKey="0">
-            <Accordion.Header>Task 1</Accordion.Header>
+            <Accordion.Header><div class ="accordhead">Task 1 - pawns</div></Accordion.Header>
             <Accordion.Body>
-              Define 4 functions called, 'moveup', 'movedown', 'moveleft', 'moveright', which each take 2 integers the x and y coordinates of the head of the snake and adjust
-              it accordingly. Use 'printline' to test your code to make sure it works in the terminal before seeing if it has allowed the snake to move. 
+              <ol type="a">
+                <li>Define a function 'spaceForward' which takes as an input, a list containing the x and y coordinate of a piece, returns a list representing the coordinates of the space directly in front of it (that's an increase in the y).
+                  Hint: Make use of the 'listhead' and 'listend' functions built into Hale.
+                </li>
+                <br></br><li>Define a function 'equalPos' which takes 4 inputs, an x and y coordinate of a piece, and an x and y coordinate of a space and returns a boolean if the piece is on that space.</li>
+                <br></br><li>Define a function 'pieceAt' which takes an x and y coordinate as well as a list of x,y coordinates (this opposing pieces) and returns a boolean. True if an opposing piece 
+                is on the square else false</li>
+                <br></br><li>Define a function 'pawnMoveForward' which takes an x and y coordinate of the pawn and returns a list of available spaces the pawn can move. You will need to make use of your
+                'pieceAt' function, since a pawn can only move forward if a piece isn't in that space.</li>
+              </ol>
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
-            <Accordion.Header>Accordion Item #2</Accordion.Header>
+            <Accordion.Header>Task 2</Accordion.Header>
             <Accordion.Body>
 
             </Accordion.Body>

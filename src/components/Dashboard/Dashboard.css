@@ -14,8 +14,8 @@ html {
 
 }
 
-.x-acc-item .x-acc-header .x-acc-header-content {
-  font-size: 22px;
+.accordhead {
+  font-size: 16px;
   font-weight: 700;
 }
 
