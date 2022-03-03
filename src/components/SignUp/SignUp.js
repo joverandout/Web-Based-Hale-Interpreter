@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from 'prop-types';
 import axios from "axios";
 
-import './Login.css';
+import './SignUp.css';
 
-async function loginUser(credentials) {
+async function SignUpUser(credentials) {
   const responsey = await axios({
     method: "POST",
-    url:"/hostlogin",
+    url:"/hostSignUp",
     data:{
       email: credentials.username,
       password: credentials.password
@@ -24,22 +24,20 @@ async function loginUser(credentials) {
     });
 }
 
-async function SignUpUser(credentials) {
+async function loginUser(credentials) {
   return({
-      token: 'signup'
+      token: ''
     });
 }
 
 
-
-export default function Login({ setToken, setUserNameCurr }) {
+export default function SignUp({ setToken, setUserNameCurr }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
-    // const { token, setToken } = useToken();
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const token = await loginUser({
+        const token = await SignUpUser({
           username,
           password
         });
@@ -52,9 +50,9 @@ export default function Login({ setToken, setUserNameCurr }) {
         console.log(token)
     }
 
-    const signup = async e => {
+    const login = async e => {
       e.preventDefault();
-      const token = await SignUpUser({
+      const token = await loginUser({
         username,
         password
       });
@@ -65,16 +63,15 @@ export default function Login({ setToken, setUserNameCurr }) {
         console.log(UserNameCurr)
       // }
       console.log(token)
-  }
-    
+    }
 
     return(
       
-        <div className="login-wrapper">
+        <div className="SignUp-wrapper">
             <h2 class="title">Hale - A Web Based Interpreter</h2>
             <br></br>
             <br></br>
-            <h3>Please login</h3>
+            <h3>Please Sign Up</h3>
             <br></br>
             <form onSubmit={handleSubmit}>
               <div class="form-group">
@@ -92,10 +89,10 @@ export default function Login({ setToken, setUserNameCurr }) {
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div> */}
               <br></br>
-              <a href="#" onClick={signup}>Don't have an account? Sign up Here!</a>
+              <a href="#" onClick={login}>Already have an account? Login here!</a>
               <br></br>
               <br></br>
-              <button type="submit" class="btn btn-primary"><div class="btntextloginpage">Submit</div></button>
+              <button type="submit" class="btn btn-primary"><div class="btntextSignUppage">Submit</div></button>
             </form>
         </div>
 
@@ -104,6 +101,6 @@ export default function Login({ setToken, setUserNameCurr }) {
     )
 }
 
-Login.propTypes = {
+SignUp.propTypes = {
     setToken: PropTypes.func.isRequired
   }

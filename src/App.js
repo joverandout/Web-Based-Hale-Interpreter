@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+
+
 import Dashboard from './components/Dashboard/Dashboard';
 import Info from './components/Info/Info';
 import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
 import Preferences from './components/Preferences/Preferences';
 import Profile from './components/Profile/Profile';
 import useToken from './useToken';
@@ -65,18 +68,27 @@ function App() {
   console.log(UserNameCurr)
   console.log("===========")
 
+
+
+  
   if(!token){
     console.log("no token")
     console.log(token)
-    return<Login setToken={setToken} setUserNameCurr = {setUserNameCurr}/>
+    return <Login setToken={setToken} setUserNameCurr = {setUserNameCurr}/>
+  } 
+
+  if(token == 'signup'){
+    console.log("yeh token")
+    console.log(token)
+    return <SignUp setToken={setToken} setUserNameCurr = {setUserNameCurr}/>
   }
-  
+
   return (
     <div className="App">
       <div className="wrapper">
       <Router>
         <Routes>
-          <Route
+        <Route
             path="/"
             element={<Navigate to="/dashboard" />}
           />

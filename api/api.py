@@ -6,6 +6,7 @@ from inputStream import InputStream
 from CommonTokenStream import CommonTokenStream
 import haleMain
 
+import hashlib
 import sqlite3
 from sqlite3 import Error
 
@@ -84,7 +85,8 @@ def hostlogin():
         username = info["email"]
         password = info["password"]
 
-        # hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
+        print(hashed_password)
         # print(hashed_password)
         succesful_login = False
 
@@ -94,7 +96,7 @@ def hostlogin():
             query = "SELECT Username, Password FROM USERS WHERE username = '" + username + "'"
             cur.execute(query)
             data = cur.fetchall()
-            if data[0][1] == password:
+            if data[0][1] == hashed_password:
                 succesful_login = True
                 #DO THIS RETURN HOST ID 
                 returnDict = dict()

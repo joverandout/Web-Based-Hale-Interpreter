@@ -388,9 +388,21 @@ class Visitor(HaleVisitor):
         for i, left in enumerate(multdiv[1:]):
             left = self.visit(left)
             if context.PLUS(i):
-                right += left
+                try:
+                    right += left
+                except TypeError:
+                    value = right
+                    if(type(left) is not int):
+                        value = left
+                    errors.append("Logical Error: Addition can only be applied to type int and string. You have applied it to '" + value + "' which is type " + str(type(value)))
             elif context.MINUS(i):
-                right -= left
+                try:
+                    right -= left
+                except TypeError:
+                    value = right
+                    if(type(left) is not int):
+                        value = left
+                    errors.append("Logical Error: Subtraction can only be applied to type int and string. You have applied it to '" + value + "' which is type " + str(type(value)))
 
         return right
 
@@ -414,7 +426,7 @@ class Visitor(HaleVisitor):
                     value = right
                     if(type(left) is not int):
                         value = left
-                    errors.append("Logical Error: Multiplication can only be applied to type ints. You have applied it to '" + value + "' which is type " + str(type(value)))
+                    errors.append("Logical Error: Multiplication can only be applied to type int. You have applied it to '" + value + "' which is type " + str(type(value)))
             elif context.DIV(i):
                 try:
                     right /= left
@@ -422,7 +434,7 @@ class Visitor(HaleVisitor):
                     value = right
                     if(type(left) is not int):
                         value = left
-                    errors.append("Logical Error: Division can only be applied to type ints. You have applied it to '" + value + "' which is type " + str(type(value)))
+                    errors.append("Logical Error: Division can only be applied to type int. You have applied it to '" + value + "' which is type " + str(type(value)))
         return right
 
     def visitExp(self, context):
