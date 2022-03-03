@@ -408,9 +408,21 @@ class Visitor(HaleVisitor):
         for i, left in enumerate(exp[1:]):
             left = self.visit(left)
             if context.MULT(i):
-                right *= left
+                try:
+                    right *= left
+                except TypeError:
+                    value = right
+                    if(type(left) is not int):
+                        value = left
+                    errors.append("Logical Error: Multiplication can only be applied to type ints. You have applied it to '" + value + "' which is type " + str(type(value)))
             elif context.DIV(i):
-                right /= left
+                try:
+                    right /= left
+                except TypeError:
+                    value = right
+                    if(type(left) is not int):
+                        value = left
+                    errors.append("Logical Error: Division can only be applied to type ints. You have applied it to '" + value + "' which is type " + str(type(value)))
         return right
 
     def visitExp(self, context):

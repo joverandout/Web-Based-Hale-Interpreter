@@ -128,7 +128,7 @@ function Info() {
           <p class="line4 terminalp">$ cube(5);</p>
           <p class="line4 terminalp">> 125</p>
           <p class="line4 terminalp">$ cube("Aubergine");</p>
-          <p class="line4 terminalp">>    ERROR: "Aubergine" is not of type int<span class="cursor2">_</span></p>
+          <p class="line4 terminalp">> LOGICAL ERROR: Multiplication can only be applied to type ints. You have applied it to 'Aubergine' which is type 'str'_</p>
         </div>
         <br></br>
         <p>So what we're saying with our function definition is this. We are defining a function called bue, it takes one input called x. We expect it to give us an integer back
