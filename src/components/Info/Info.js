@@ -4,8 +4,14 @@ import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Info.css';
 
-function Info() {
+import useToken from '../../useToken';
+import useUserNameCurr from '../../useUserNameCurr.js';
 
+
+function Info() {
+  const { UserNameCurr, setUserNameCurr } = useUserNameCurr();
+  const { token, setToken } = useToken();
+  
   const [FunctionOutput, setFunctionOutput] = useState(0);
   const [PrintOutputs, setPrintOutput] = useState(0);
   const [name, setName] = useState('');
@@ -52,6 +58,19 @@ function Info() {
       .then(response => response.json());
   };
 
+  const profile = () =>{ 
+    let path = `../profile`; 
+    navigate(path);
+  }
+
+  function signOut() { 
+    setToken('')
+    setUserNameCurr('')
+    let path = `../`; 
+    navigate(path);
+    window.location.reload();
+  }
+
   return (
     <div className="Info">
 
@@ -63,8 +82,8 @@ function Info() {
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>
-          <button class="btn btn-lg btn-primary" type="button">Profie</button>
-          <button class="btn btn-lg btn-danger" type="button">Sign Out</button>
+          <button onClick={profile} class="btn btn-lg btn-primary" type="button">Profie</button>
+          <button onClick={signOut} class="btn btn-lg btn-danger" type="button">Sign Out</button>
         </form>
       </nav>
       

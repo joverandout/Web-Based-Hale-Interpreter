@@ -8,6 +8,12 @@ html {
   font-size: 62.5%;
 }
 
+.navbar.navbar-dark.bg-dark.pt-3.pb-3{
+  padding-left: 10pt;
+  padding-right: 10pt;
+
+}
+
 .x-acc-item .x-acc-header .x-acc-header-content {
   font-size: 22px;
   font-weight: 700;
@@ -16,7 +22,7 @@ html {
 .myeditor-menu{
   width: 100%;
   height: 10rem;
-  background-color: #c3aae9;
+  background-color: #ECECEA;
   justify-content: flex-start;
   align-items: center;
   padding: 1px 0 5px 10px;
@@ -323,3 +329,5 @@ span {
     width:100%
   }
 }
+
+

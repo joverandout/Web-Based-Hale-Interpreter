@@ -1,5 +1,5 @@
 body {
-    background-color: #c3aae9;
+    background-color: #ECECEA;
 }
 
 
@@ -33,7 +33,7 @@ h2{
 }
 
 .login-wrapper {
-    background-color: #c3aae9;
+    background-color: #ECECEA;
     display: flex;
     flex-direction: column;
     align-items: center;

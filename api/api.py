@@ -11,6 +11,31 @@ from sqlite3 import Error
 
 app = Flask(__name__)
 
+@app.route('/profile', methods=['POST'])
+def get_profile():
+    json = request.get_json()
+    profile = json['username']
+    with sqlite3.connect("APIData.db") as con:
+        cur = con.cursor()
+        query = "SELECT * FROM TASK1 WHERE username = '" + profile + "'"
+        cur.execute(query)
+        data = cur.fetchall()
+        return jsonify(data)
+
+@app.route('/getname', methods=['POST'])
+def get_name():
+    json = request.get_json()
+    profile = json['username']
+    with sqlite3.connect("APIData.db") as con:
+        cur = con.cursor()
+        query = "SELECT fName, sName FROM USERS WHERE username = '" + profile + "'"
+        cur.execute(query)
+        data = cur.fetchall()
+        print(data)
+        name = data[0][0] + ' ' + data[0][1]
+        print(name)
+        return jsonify(name)
+
 @app.route('/write', methods = ['POST'])
 def write_file():
     code = request.get_json()

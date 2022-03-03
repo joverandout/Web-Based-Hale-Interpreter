@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Info from './components/Info/Info';
 import Login from './components/Login/Login';
 import Preferences from './components/Preferences/Preferences';
+import Profile from './components/Profile/Profile';
 import useToken from './useToken';
 import useUserNameCurr from './useUserNameCurr';
 
@@ -82,34 +83,10 @@ function App() {
           <Route exact path="/dashboard" element={<Dashboard />}></Route>
           <Route exact path="/preferences"element={<Preferences />}></Route>
           <Route exact path="/info"element={<Info />}></Route>
+          <Route exact path="/profile"element={<Profile />}></Route>
         </Routes>
       </Router>
     </div>
-    {/*
-      <header className="App-header">
-      <div class="editor-menu">
-        <button class="btn">Dark Mode</button>
-        <button class="btn">Light Mode</button>
-        <button class="btn" onClick={buttonpress}>Run</button>
-    </div>
-
-    <div class="container">
-        <div class="left">
-            <div class="editor" contenteditable="">
-                Write Code here...
-            </div>
-        </div>
-        <div class="bar"title="Click and Drag"></div>
-        <div class="right">
-        <div class="mids">
-          <p>{FunctionOutput}.</p>
-        </div>
-        <div class="mids">
-        <p>{PrintOutputs}</p>
-        </div>
-        </div>
-    </div>
-      </header>*/}
     </div> 
   );
 }

@@ -1,13 +1,17 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Chessboard } from "react-chessboard";
 import { Button } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
+
 import Editor from "@monaco-editor/react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Accordion from 'react-bootstrap/Accordion'
-import SnakeGame from '../Snake/SnakeGame.js'
+
 import './Dashboard.css';
 import useToken from '../../useToken';
 import useUserNameCurr from '../../useUserNameCurr.js';
+
+import Game from './chess/components/game.js'
 
 function Dashboard() {
 
@@ -16,7 +20,7 @@ function Dashboard() {
 
   const [result, setResult] = useState(["Console - use this to test your code with 'RUN' before using 'SAVE' to see it's effects in game"]);
 
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("vs-dark");
   const editorRef = useRef(null);
 
 
@@ -27,6 +31,11 @@ function Dashboard() {
   let navigate = useNavigate(); 
   const routeChange = () =>{ 
     let path = `../info`; 
+    navigate(path);
+  }
+
+  const profile = () =>{ 
+    let path = `../profile`; 
     navigate(path);
   }
 
@@ -97,7 +106,7 @@ function Dashboard() {
         </form>
         <form class="form-inline float-right">
           <h1>‎</h1>
-          <button class="btn btn-lg btn-primary" type="button">Profie</button>
+          <button onClick={profile} class="btn btn-lg btn-primary" type="button">Profie</button>
           <button onClick={signOut} class="btn btn-lg btn-danger" type="button">Sign Out</button>
         </form>
       </nav>
@@ -155,8 +164,8 @@ function Dashboard() {
 
         <br></br>  
         
-        <div>
-          <SnakeGame />
+        <div class="chess">
+          <Game />
         </div>
 
 

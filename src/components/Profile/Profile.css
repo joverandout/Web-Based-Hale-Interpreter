@@ -8,6 +8,16 @@ html {
   font-size: 62.5%;
 }
 
+.photo {
+  height: 100px;
+  width: 100px; 
+  align-self: center;
+}
+
+.profilename{
+  text-align: center;
+}
+
 .myeditor-menu{
   width: 100%;
   height: 10rem;
