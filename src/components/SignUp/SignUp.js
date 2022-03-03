@@ -75,6 +75,14 @@ export default function SignUp({ setToken, setUserNameCurr }) {
             <br></br>
             <form onSubmit={handleSubmit}>
               <div class="form-group">
+                <label for="exampleInputEmail1">First Name</label>
+                <input type="name" class="form-control input-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="John" onChange={e => setUserName(e.target.value)}></input>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Surname</label>
+                <input type="name" class="form-control input-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doe" onChange={e => setUserName(e.target.value)}></input>
+              </div>
+              <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" class="form-control input-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" onChange={e => setUserName(e.target.value)}></input>
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>

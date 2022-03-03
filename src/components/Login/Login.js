@@ -69,7 +69,6 @@ export default function Login({ setToken, setUserNameCurr }) {
     
 
     return(
-      
         <div className="login-wrapper">
             <h2 class="title">Hale - A Web Based Interpreter</h2>
             <br></br>
@@ -98,9 +97,6 @@ export default function Login({ setToken, setUserNameCurr }) {
               <button type="submit" class="btn btn-primary"><div class="btntextloginpage">Submit</div></button>
             </form>
         </div>
-
-
-
     )
 }
 
