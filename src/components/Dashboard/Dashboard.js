@@ -162,7 +162,7 @@ function Dashboard() {
             </Accordion.Body>
           </Accordion.Item>
           <Accordion.Item eventKey="1">
-            <Accordion.Header>Task 2</Accordion.Header>
+            <Accordion.Header><div class ="accordhead">Task 2</div></Accordion.Header>
             <Accordion.Body>
 
             </Accordion.Body>
