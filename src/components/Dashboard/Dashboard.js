@@ -6,11 +6,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Accordion from 'react-bootstrap/Accordion'
 import SnakeGame from '../Snake/SnakeGame.js'
 import './Dashboard.css';
+import useToken from '../../useToken';
 import useUserNameCurr from '../../useUserNameCurr.js';
 
 function Dashboard() {
 
-  const { UserNameCurr, setUserNameCurr} = useUserNameCurr();
+  const { UserNameCurr, setUserNameCurr } = useUserNameCurr();
+  const { token, setToken } = useToken();
 
   const [result, setResult] = useState(["Console - use this to test your code with 'RUN' before using 'SAVE' to see it's effects in game"]);
 
@@ -26,6 +28,14 @@ function Dashboard() {
   const routeChange = () =>{ 
     let path = `../info`; 
     navigate(path);
+  }
+
+  function signOut() { 
+    setToken('')
+    setUserNameCurr('')
+    let path = `../`; 
+    navigate(path);
+    window.location.reload();
   }
 
   function toggleThemedark() {
@@ -51,18 +61,6 @@ function Dashboard() {
       else{
         setResult(Object.keys(data.errors).map((key) => data.errors[key]))
       }
-      //console.log(PrintOutputs);
-      // console.log(typeof(PrintOutputs));
-      // console.log(PrintOutputs.values());
-      // var iterator = PrintOutputs.values();
-
-      // for (let letter of iterator) {
-      //   arr.push(letter);
-      //   console.log(letter);
-      // }
-      // console.log(arr);
-
-      // setResult(arr);
     });
   };
 
@@ -100,7 +98,7 @@ function Dashboard() {
         <form class="form-inline float-right">
           <h1>‎</h1>
           <button class="btn btn-lg btn-primary" type="button">Profie</button>
-          <button class="btn btn-lg btn-danger" type="button">Sign Out</button>
+          <button onClick={signOut} class="btn btn-lg btn-danger" type="button">Sign Out</button>
         </form>
       </nav>
 
