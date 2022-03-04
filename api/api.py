@@ -105,7 +105,7 @@ def hostlogin():
                 return jsonify(returnDict)
         
         if(not succesful_login):
-            return ("wrong password",400)
+            return ("Incorrect password",400)
     except:
         #Likely error is that the request did not have the fields we wanted from it
         return ("Bad Request, probably missing the data we want", 400)
@@ -147,14 +147,8 @@ def hostsignup():
             returnDict = dict()
             returnDict["token"] = 'token1234'
             returnDict["username"] = username
-            return jsonify(returnDict)
-            # if data[0][1] == hashed_password:
-            #     succesful_login = True
-            #     #DO THIS RETURN HOST ID 
-            #     
-        
+            return jsonify(returnDict)       
     except:
-        #Likely error is that the request did not have the fields we wanted from it
         return ("Bad Request, probably missing the data we want", 400)
     
 

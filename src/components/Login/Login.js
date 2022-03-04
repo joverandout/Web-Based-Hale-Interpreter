@@ -6,22 +6,30 @@ import axios from "axios";
 
 import './Login.css';
 
+
 async function loginUser(credentials) {
-  const responsey = await axios({
-    method: "POST",
-    url:"/hostlogin",
-    data:{
-      email: credentials.username,
-      password: credentials.password
-     }
-    }
-  ).then((response)=>{
-    return response
-    // axios returns API response body in .data
-  })
-  return({
-      token: responsey.data.token,
-    });
+  try{
+    const responsey = await axios({
+      method: "POST",
+      url:"/hostlogin",
+      data:{
+        email: credentials.username,
+        password: credentials.password
+      }
+      }
+    ).then((response)=>{
+      return response
+      // axios returns API response body in .data
+    })
+    return([{
+        token: responsey.data.token,
+      }, null]);
+  }
+  catch (error){
+    return([{
+      token: null,
+    }, error.response.data]);
+  }
 }
 
 async function SignUpUser(credentials) {
@@ -35,19 +43,29 @@ async function SignUpUser(credentials) {
 export default function Login({ setToken, setUserNameCurr }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
-    // const { token, setToken } = useToken();
+    const [error, setError] = useState();
+
 
     const handleSubmit = async e => {
         e.preventDefault();
+        if(username == null || username == ''){
+          setError("Username must be filled in");
+          return;
+        }
+        if(username == null || username == ''){
+          setError("Username must be filled in");
+          return;
+        }
         const token = await loginUser({
           username,
           password
         });
-        setToken(token);
+        setToken(token[0]);
+        setError(token[1])
         // if(token == 'token1234'){
-          const UserNameCurr = { UserNameCurr: username}
-          setUserNameCurr(UserNameCurr)
-          console.log(UserNameCurr)
+        const UserNameCurr = { UserNameCurr: username}
+        setUserNameCurr(UserNameCurr)
+        console.log(UserNameCurr)
         // }
         console.log(token)
     }
@@ -67,7 +85,6 @@ export default function Login({ setToken, setUserNameCurr }) {
       console.log(token)
   }
     
-
     return(
         <div className="login-wrapper">
             <h2 class="title">Hale - A Web Based Interpreter</h2>
@@ -91,10 +108,15 @@ export default function Login({ setToken, setUserNameCurr }) {
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div> */}
               <br></br>
+              <button type="submit" class="btn btn-primary"><div class="btntextloginpage">Submit</div></button>
+              <br></br>
+              <br></br>
               <a href="#" onClick={signup}>Don't have an account? Sign up Here!</a>
               <br></br>
               <br></br>
-              <button type="submit" class="btn btn-primary"><div class="btntextloginpage">Submit</div></button>
+              {error}
+              <br></br>
+              <br></br>
             </form>
         </div>
     )

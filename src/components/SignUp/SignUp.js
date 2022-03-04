@@ -38,9 +38,26 @@ export default function SignUp({ setToken, setUserNameCurr }) {
     const [password, setPassword] = useState();
     const [fname, setFname] = useState();
     const [sname, setSname] = useState();
+    const [error, setError] = useState();
 
     const handleSubmit = async e => {
         e.preventDefault();
+        if(username == null || username == ''){
+          setError("Username must be filled in");
+          return;
+        }
+        if(fname == null || fname == ''){
+          setError("First Name must be filled in");
+          return;
+        }
+        if(sname == null || sname == ''){
+          setError("Surname must be filled in");
+          return;
+        }
+        if(password == null || password == ''){
+          setError("Surname must be filled in");
+          return;
+        }
         const token = await SignUpUser({
           username,
           password,
@@ -72,6 +89,7 @@ export default function SignUp({ setToken, setUserNameCurr }) {
       // }
       console.log(token)
     }
+
 
     return(
       
@@ -105,10 +123,15 @@ export default function SignUp({ setToken, setUserNameCurr }) {
                 <label class="form-check-label" for="exampleCheck1">Check me out</label>
               </div> */}
               <br></br>
+              <button type="submit" class="btn btn-primary"><div class="btntextSignUppage">Submit</div></button>
+              <br></br>
+              <br></br>
               <a href="#" onClick={login}>Already have an account? Login here!</a>
               <br></br>
               <br></br>
-              <button type="submit" class="btn btn-primary"><div class="btntextSignUppage">Submit</div></button>
+              {error}
+              <br></br>
+              <br></br>
             </form>
         </div>
 
