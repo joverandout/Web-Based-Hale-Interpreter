@@ -73,7 +73,7 @@ export default function Login({ setToken, setUserNameCurr }) {
             <h2 class="title">Hale - A Web Based Interpreter</h2>
             <br></br>
             <br></br>
-            <h3>Please login</h3>
+            <h3>Please Login</h3>
             <br></br>
             <form onSubmit={handleSubmit}>
               <div class="form-group">

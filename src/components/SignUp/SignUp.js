@@ -12,7 +12,9 @@ async function SignUpUser(credentials) {
     url:"/hostSignUp",
     data:{
       email: credentials.username,
-      password: credentials.password
+      password: credentials.password,
+      firstname: credentials.fname,
+      surname: credentials.sname
      }
     }
   ).then((response)=>{
@@ -34,12 +36,16 @@ async function loginUser(credentials) {
 export default function SignUp({ setToken, setUserNameCurr }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+    const [fname, setFname] = useState();
+    const [sname, setSname] = useState();
 
     const handleSubmit = async e => {
         e.preventDefault();
         const token = await SignUpUser({
           username,
-          password
+          password,
+          fname,
+          sname
         });
         setToken(token);
         // if(token == 'token1234'){
@@ -54,7 +60,9 @@ export default function SignUp({ setToken, setUserNameCurr }) {
       e.preventDefault();
       const token = await loginUser({
         username,
-        password
+        password,
+        fname,
+        sname
       });
       setToken(token);
       // if(token == 'token1234'){
@@ -76,11 +84,11 @@ export default function SignUp({ setToken, setUserNameCurr }) {
             <form onSubmit={handleSubmit}>
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
-                <input type="name" class="form-control input-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="John" onChange={e => setUserName(e.target.value)}></input>
+                <input type="name" class="form-control input-lg" id="exampleInpuFtName1" aria-describedby="emailHelp" placeholder="John" onChange={e => setFname(e.target.value)}></input>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Surname</label>
-                <input type="name" class="form-control input-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Doe" onChange={e => setUserName(e.target.value)}></input>
+                <input type="name" class="form-control input-lg" id="exampleInputSName1" aria-describedby="emailHelp" placeholder="Doe" onChange={e => setSname(e.target.value)}></input>
               </div>
               <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
