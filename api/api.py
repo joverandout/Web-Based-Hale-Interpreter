@@ -91,18 +91,21 @@ def hostlogin():
         succesful_login = False
 
         #logic to determine if the user is in the database,
-        with sqlite3.connect("APIData.db") as con:
-            cur = con.cursor()
-            query = "SELECT Username, Password FROM USERS WHERE username = '" + username + "'"
-            cur.execute(query)
-            data = cur.fetchall()
-            if data[0][1] == hashed_password:
-                succesful_login = True
-                #DO THIS RETURN HOST ID 
-                returnDict = dict()
-                returnDict["token"] = 'token1234'
-                returnDict["username"] = username
-                return jsonify(returnDict)
+        try:
+            with sqlite3.connect("APIData.db") as con:
+                cur = con.cursor()
+                query = "SELECT Username, Password FROM USERS WHERE username = '" + username + "'"
+                cur.execute(query)
+                data = cur.fetchall()
+                if data[0][1] == hashed_password:
+                    succesful_login = True
+                    #DO THIS RETURN HOST ID 
+                    returnDict = dict()
+                    returnDict["token"] = 'token1234'
+                    returnDict["username"] = username
+                    return jsonify(returnDict)
+        except:
+            return ("Username does not exist", 401)
         
         if(not succesful_login):
             return ("Incorrect password",400)

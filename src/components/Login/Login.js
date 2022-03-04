@@ -48,12 +48,17 @@ export default function Login({ setToken, setUserNameCurr }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        if(username == null || username == ''){
+        
+        if((username == null || username == '') && (password == null || password == '')){
+          setError("No login information was provided");
+          return;
+        }
+        else if(username == null || username == ''){
           setError("Username must be filled in");
           return;
         }
-        if(username == null || username == ''){
-          setError("Username must be filled in");
+        else if(password == null || password == ''){
+          setError("Password must be filled in");
           return;
         }
         const token = await loginUser({
