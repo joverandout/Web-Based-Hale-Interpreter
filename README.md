@@ -1,6 +1,12 @@
 # Web Based Hale Interpreter
 This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. Work is still in progress and while the interpreter works fully the website currently is under work. It currently has some functionality. Any Hale code written in the left hand box will run and the output will be printed to the right along with various other gubbins. The return value with be printed first and then any print lines that were called.
 
+## Disclosure
+
+The code in this git repository is the copyright of Joe Moore and distribution or use is not allowed without explicit permission and without giving full credit. Please see the LICENSE for a full and clear indication of what is allowed.
+
+Hale also uses code form the react-chess repository (https://github.com/TalhaAwan/react-chess) by Talha Awan (https://github.com/TalhaAwan) for the chess game. This is done in accordance to the LICENSE (https://github.com/TalhaAwan/react-chess/blob/master/LICENSE) due to the acknowledgment of use and inclusion of the license in the folder where code is used.
+
 ## Hale
 
 You can test the interpreter manually by navigating to the `/api` folder and running following commands. Hale's grammar is included at the end of this `readMe`
@@ -97,12 +103,6 @@ starting development server
 Compiled with warnings.
 ```
 This should open the website in your browser. If not you can navigate to the URL manually. 
-
-## Disclosure
-
-The code in this git repository is the copyright of Joe Moore and distribution or use is not allowed without explicit permission and without giving full credit. Please see the LICENSE for a full and clear indication of what is allowed.
-
-Hale also uses code form the react-chess repository (https://github.com/TalhaAwan/react-chess) by Talha Awan (https://github.com/TalhaAwan) for the chess game. This is done in accordance to the LICENSE (https://github.com/TalhaAwan/react-chess/blob/master/LICENSE) due to the acknowledgment of use and inclusion of the license in the folder where code is used. 
 
 ## Hale Grammar
 
