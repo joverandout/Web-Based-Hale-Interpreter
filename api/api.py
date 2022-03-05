@@ -105,13 +105,13 @@ def hostlogin():
                     returnDict["username"] = username
                     return jsonify(returnDict)
         except:
-            return ("Username does not exist", 401)
+            return ("Email address does not exist", 401)
         
         if(not succesful_login):
             return ("Incorrect password",400)
     except:
         #Likely error is that the request did not have the fields we wanted from it
-        return ("Bad Request, probably missing the data we want", 400)
+        return ("Cannot retrieve data, please check credentials", 400)
 
 
 @app.route('/hostSignUp', methods=["POST"])
@@ -132,7 +132,7 @@ def hostsignup():
     # print(hashed_password)
     
     if(len(fname) < 1 or len(sname) < 1):
-        return ("missing name",442)
+        return ("Missing first name",442)
 
     try:#logic to determine if the user is in the database,
         with sqlite3.connect("APIData.db") as con:
@@ -152,7 +152,7 @@ def hostsignup():
             returnDict["username"] = username
             return jsonify(returnDict)       
     except:
-        return ("Bad Request, probably missing the data we want", 400)
+        return ("Cannot retrieve data, please check credentials", 400)
     
 
 @app.route('/usercreate', methods=["POST"])

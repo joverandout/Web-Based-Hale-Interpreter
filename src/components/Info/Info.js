@@ -157,6 +157,9 @@ function Info() {
         </div>
     </div>*/}
       </header>
+      <div class="footer2">
+          © Joe Moore
+        </div>
     </div> 
   );
 }

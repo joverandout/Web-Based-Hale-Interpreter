@@ -92,13 +92,10 @@ export default function SignUp({ setToken, setUserNameCurr }) {
 
 
     return(
-      
+      <div>
         <div className="SignUp-wrapper">
             <h2 class="title">Hale - A Web Based Interpreter</h2>
-            <br></br>
-            <br></br>
-            <h3>Please Sign Up</h3>
-            <br></br>
+            <h3 class="signin">Please Sign Up</h3>
             <form onSubmit={handleSubmit}>
               <div class="form-group">
                 <label for="exampleInputEmail1">First Name</label>
@@ -127,14 +124,13 @@ export default function SignUp({ setToken, setUserNameCurr }) {
               <br></br>
               <br></br>
               <a href="#" onClick={login}>Already have an account? Login here!</a>
-              <br></br>
-              <br></br>
-              {error}
-              <br></br>
-              <br></br>
+              <div class="errorMessage">{error}</div>
             </form>
         </div>
-
+        <div class="footer">
+          © Joe Moore
+        </div>
+    </div>
 
 
     )

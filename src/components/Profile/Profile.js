@@ -149,8 +149,11 @@ function Profile() {
         </div>
         </div>
       </div>
-
+      <div class="footer2">
+          © Joe Moore
+      </div>
       </header>
+      
     </div> 
   );
 }

@@ -5,16 +5,38 @@ body {
 
 .title{
     text-align: center;
+    padding-bottom: 40px;
+}
+
+
+.signin{
+    padding-bottom: 10px;
 }
 /* h1{
     color:black;
     font-size: 64px;
 }
 
+
 h2{
     color:black;
     font-size: 32px;
 } */
+
+.errorMessage {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.footer {
+    bottom: 2%;
+    position: fixed;
+    align-content: center;
+    text-align: center;
+    font-size: 18px;
+    width: 100%;
+}
+
 
 .form-group{
     font-size: 16px;

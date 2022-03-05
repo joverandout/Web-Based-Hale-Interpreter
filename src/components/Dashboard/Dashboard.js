@@ -178,10 +178,14 @@ function Dashboard() {
 
 
       </div>
-      
+ 
     </div>
+    <div class="footer2">
+          © Joe Moore
+        </div>
       </header>
     </div>
+    
   );
 }
 export default Dashboard;

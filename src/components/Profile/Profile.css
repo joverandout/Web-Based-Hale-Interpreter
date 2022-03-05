@@ -25,7 +25,13 @@ html {
   text-align: center;
 }
 
-
+.footer2 {
+  align-content: center;
+  text-align: center;
+  font-size: 18px;
+  width: 100%;
+  padding-bottom: 10pt;
+}
 
 .row:after {
   content: "";
