@@ -3,7 +3,7 @@ This is the subject of my Dissertation. It is a web based interpreter for my own
 
 ## Disclosure
 
-The code in this git repository is the copyright of Joe Moore and distribution or use is not allowed without explicit permission and without giving full credit. Please see the LICENSE for a full and clear indication of what is allowed.
+The code in this git repository is the copyright of Joe Moore and distribution or use is not allowed without explicit permission and without giving full credit. Please see the LICENSE (https://github.com/joverandout/Web-Based-Hale-Interpreter/blob/main/LICENSE) for a full and clear indication of what is allowed.
 
 Hale also uses code form the react-chess repository (https://github.com/TalhaAwan/react-chess) by Talha Awan (https://github.com/TalhaAwan) for the chess game. This is done in accordance to the LICENSE (https://github.com/TalhaAwan/react-chess/blob/master/LICENSE) due to the acknowledgment of use and inclusion of the license in the folder where code is used.
 
