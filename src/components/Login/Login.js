@@ -16,7 +16,7 @@ async function loginUser(credentials) {
         email: credentials.username,
         password: credentials.password
       }
-      }
+    }
     ).then((response)=>{
       return response
       // axios returns API response body in .data
@@ -65,8 +65,10 @@ export default function Login({ setToken, setUserNameCurr }) {
         username,
         password
       });
+      console.log(token)
+      console.log(token[1])
       setToken(token[0]);
-      setError(token[1])
+      setError(token[1]);
       // if(token == 'token1234'){
       const UserNameCurr = { UserNameCurr: username}
       setUserNameCurr(UserNameCurr)
@@ -83,19 +85,13 @@ export default function Login({ setToken, setUserNameCurr }) {
     });
     setToken(token);
     // if(token == 'token1234'){
-      const UserNameCurr = { UserNameCurr: username}
-      setUserNameCurr(UserNameCurr)
-      console.log(UserNameCurr)
+    const UserNameCurr = { UserNameCurr: username}
+    setUserNameCurr(UserNameCurr)
+    console.log(UserNameCurr)
     // }
     console.log(token)
   }
 
-  const Options = (props) => {
-
-    return
-       (<p>WHY IS THIS NOT WOKRING</p>);
-  }
-  
   return(
     <div>
       <div className="login-wrapper">

@@ -7,23 +7,30 @@ import axios from "axios";
 import './SignUp.css';
 
 async function SignUpUser(credentials) {
-  const responsey = await axios({
-    method: "POST",
-    url:"/hostSignUp",
-    data:{
-      email: credentials.username,
-      password: credentials.password,
-      firstname: credentials.fname,
-      surname: credentials.sname
-     }
+  try{
+    const responsey = await axios({
+      method: "POST",
+      url:"/hostSignUp",
+      data:{
+        email: credentials.username,
+        password: credentials.password,
+        firstname: credentials.fname,
+        surname: credentials.sname
+      }
     }
-  ).then((response)=>{
-    return response
-    // axios returns API response body in .data
-  })
-  return({
-      token: responsey.data.token,
-    });
+    ).then((response)=>{
+      return response
+      // axios returns API response body in .data
+    })
+    return([{
+        token: responsey.data.token,
+      }, null]);
+  }
+  catch (error){
+    return([{
+      token: 'signup',
+    }, error.response.data]);
+  }
 }
 
 async function loginUser(credentials) {
@@ -64,13 +71,17 @@ export default function SignUp({ setToken, setUserNameCurr }) {
           fname,
           sname
         });
-        setToken(token);
+
+        setToken(token[0]);
+        setError(token[1]);
         // if(token == 'token1234'){
-          const UserNameCurr = { UserNameCurr: username}
-          setUserNameCurr(UserNameCurr)
-          console.log(UserNameCurr)
+        const UserNameCurr = { UserNameCurr: username}
+        setUserNameCurr(UserNameCurr)
+        //console.log(UserNameCurr)
         // }
         console.log(token)
+        console.log(token[1])
+        console.log(error)
     }
 
     const login = async e => {
@@ -78,14 +89,12 @@ export default function SignUp({ setToken, setUserNameCurr }) {
       const token = await loginUser({
         username,
         password,
-        fname,
-        sname
       });
       setToken(token);
       // if(token == 'token1234'){
-        const UserNameCurr = { UserNameCurr: username}
-        setUserNameCurr(UserNameCurr)
-        console.log(UserNameCurr)
+      const UserNameCurr = { UserNameCurr: username}
+      setUserNameCurr(UserNameCurr)
+      console.log(UserNameCurr)
       // }
       console.log(token)
     }

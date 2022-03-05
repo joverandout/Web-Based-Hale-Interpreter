@@ -130,6 +130,10 @@ def hostsignup():
     hashed_password = hashlib.sha256(password.encode('utf-8')).hexdigest()
     print(hashed_password)
     # print(hashed_password)
+
+    if check_password(password) == False:
+        return ("Password must be between 6-20 characters. It must contain at least one upper and lower case character as well as a digit", 450)
+
     
     if(len(fname) < 1 or len(sname) < 1):
         return ("Missing first name",442)
@@ -154,6 +158,13 @@ def hostsignup():
     except:
         return ("Cannot retrieve data, please check credentials", 400)
     
+
+def check_password(password):
+    if len(password) >= 6 and len(password) <= 20 and any(char.isdigit() for char in password) \
+        and any(char.isupper() for char in password) and any(char.islower() for char in password):
+        return True
+    else:
+        return False
 
 @app.route('/usercreate', methods=["POST"])
 def usercreate():
