@@ -42,8 +42,8 @@ function Dashboard() {
   function signOut() { 
     setToken('')
     setUserNameCurr('')
-    let path = `../`; 
-    navigate(path);
+    // let path = `../`; 
+    // navigate(path);
     window.location.reload();
   }
 
