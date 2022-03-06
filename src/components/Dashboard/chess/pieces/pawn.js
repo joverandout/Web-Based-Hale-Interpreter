@@ -2,36 +2,10 @@ import Piece from './piece.js';
 import { isSameDiagonal } from '../helpers'
 
 import useUserNameCurr from '../../../../useUserNameCurr.js';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
+import { FacebookInstantGamesLeaderboard } from 'phaser';
 
-var num = 0;
-
-async function loginUser(credentials) {
-  try{
-    const responsey = await axios({
-      method: "POST",
-      url:"/hostlogin",
-      data:{
-        email: credentials.username,
-        password: credentials.password
-      }
-    }
-    ).then((response)=>{
-      return response
-      // axios returns API response body in .data
-    })
-    return([{
-        token: responsey.data.token,
-      }, null]);
-  }
-  catch (error){
-    return([{
-      token: '',
-    }, error.response.data]);
-  }
-}
-
-class Pawn extends Piece {
+export default class Pawn extends Piece {
   constructor(player) {
     super(player, (player === 1 ? "https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg"));
     this.initialPositions = {
@@ -40,30 +14,21 @@ class Pawn extends Piece {
     }
   }
 
-  async buttonpress(srcc){
-    // const { UserNameCurr, setUserNameCurr } = useUserNameCurr();
-  
-    // Simple POST request with a JSON body using fetch
+  async movepawn(srcc) {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: 'joverandout@gmail.com',  src: srcc })
+      body: JSON.stringify({ username: 'joverandout@gmail.com', src: srcc })
     }
-  
-    let datum = await fetch('/task1', requestOptions)
-    .then((data) => data.json());
-    console.log(datum);
-    return datum;
+
+    const response = await fetch('/task1', requestOptions)
+    const data = await response.json();
+    console.log(data.srcminuseight)
   }
   
-  
   isMovePossible(src, dest, isDestEnemyOccupied) {
-    var val;
-    (async () => {
-      const users = (await this.buttonpress(src));
-    })()
-    console.log(token);
-
+    // console.log(this.movepawn(src));
+    this.movepawn(src);
     if (this.player === 1) {
       if ((dest === src - 8 && !isDestEnemyOccupied) || (dest === src - 16 && !isDestEnemyOccupied && this.initialPositions[1].indexOf(src) !== -1)) {
         return true;
@@ -101,4 +66,3 @@ class Pawn extends Piece {
   }
 }
 
-export default Pawn

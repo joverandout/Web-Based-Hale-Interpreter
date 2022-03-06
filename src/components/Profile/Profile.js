@@ -63,9 +63,6 @@ function Profile() {
       if(data.equalPos){
         Task1CompletedFunctions.push(data.equalPos)
       }
-      if(data.pieceAt){
-        Task1CompletedFunctions.push(data.pieceAt)
-      }
       if(data.pawnMoveForward){
         Task1CompletedFunctions.push(data.pawnMoveForward)
       }
