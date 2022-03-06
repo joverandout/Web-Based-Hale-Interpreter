@@ -12,12 +12,12 @@ export default class Pawn extends Piece {
     }
   }
 
-  async movepawn(srcc) {
+  async movepawn(srcc, username) {
     console.log("start");
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: 'john@gmail.com', src: srcc })
+      body: JSON.stringify({ username: username, src: srcc })
     }
     const response = await fetch('/task1', requestOptions)
     const data = await response.json();
@@ -25,8 +25,8 @@ export default class Pawn extends Piece {
     return data.srcminuseight;
   }
 
-  async isMovePossible(src, dest, isDestEnemyOccupied) {
-    let srcc = await this.movepawn(src);
+  async isMovePossible(src, dest, isDestEnemyOccupied, username) {
+    let srcc = await this.movepawn(src, username);
     console.log(srcc)
     if (this.player === 1) {
       if ((dest === src - 8 && !isDestEnemyOccupied) || (dest === src - 16 && !isDestEnemyOccupied && this.initialPositions[1].indexOf(src) !== -1)) {

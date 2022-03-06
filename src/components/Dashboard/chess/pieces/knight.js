@@ -6,7 +6,7 @@ export default class Knight extends Piece {
     super(player, (player === 1 ? "https://upload.wikimedia.org/wikipedia/commons/7/70/Chess_nlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/e/ef/Chess_ndt45.svg"));
   }
 
-  isMovePossible(src, dest) {
+  isMovePossible(src, dest, username) {
     return ((src - 17 === dest && !isSameRow(src, dest)) ||
       (src - 10 === dest && !isSameRow(src, dest)) ||
       (src + 6 === dest && !isSameRow(src, dest)) ||

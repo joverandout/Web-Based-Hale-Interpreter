@@ -21,7 +21,7 @@ export default class Game extends React.Component {
   }
 
   async handleClick(i) {
-    console.log(this.username);
+    console.log(this.props.username);
     const squares = [...this.state.squares];
 
     if (this.state.sourceSelection === -1) {
@@ -54,7 +54,7 @@ export default class Game extends React.Component {
       const whiteFallenSoldiers = [];
       const blackFallenSoldiers = [];
       const isDestEnemyOccupied = Boolean(squares[i]);
-      const isMovePossible = await squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied);
+      const isMovePossible = await squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied, this.props.username);
       console.log(isMovePossible);
       if (isMovePossible) {
         if (squares[i] !== null) {

@@ -174,7 +174,7 @@ function Dashboard() {
         <br></br>  
         
         <div class="chess">
-          <Game/>
+          <Game username={UserNameCurr}/>
         </div>
 
 
