@@ -1,9 +1,6 @@
 import Piece from './piece.js';
 import { isSameDiagonal } from '../helpers'
 
-import useUserNameCurr from '../../../../useUserNameCurr.js';
-import { useState, useEffect} from 'react';
-import { FacebookInstantGamesLeaderboard } from 'phaser';
 
 export default class Pawn extends Piece {
   constructor(player) {
@@ -15,6 +12,7 @@ export default class Pawn extends Piece {
   }
 
   async movepawn(srcc) {
+    console.log("start");
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -23,12 +21,13 @@ export default class Pawn extends Piece {
 
     const response = await fetch('/task1', requestOptions)
     const data = await response.json();
-    console.log(data.srcminuseight)
+    console.log(data.srcminuseight);
+    return data.srcminuseight;
   }
-  
-  isMovePossible(src, dest, isDestEnemyOccupied) {
-    // console.log(this.movepawn(src));
-    this.movepawn(src);
+
+  async isMovePossible(src, dest, isDestEnemyOccupied) {
+    let srcc = await this.movepawn(src);
+    console.log(srcc)
     if (this.player === 1) {
       if ((dest === src - 8 && !isDestEnemyOccupied) || (dest === src - 16 && !isDestEnemyOccupied && this.initialPositions[1].indexOf(src) !== -1)) {
         return true;
@@ -38,8 +37,7 @@ export default class Pawn extends Piece {
       }
     }
     else if (this.player === 2) {
-
-      if ((dest === src + 8 && !isDestEnemyOccupied) || (dest === src + 16 && !isDestEnemyOccupied && this.initialPositions[2].indexOf(src) !== -1)) {
+      if ((dest === srcc && !isDestEnemyOccupied) || (dest === src + 16 && !isDestEnemyOccupied && this.initialPositions[2].indexOf(src) !== -1)) {
         return true;
       }
       else if (isDestEnemyOccupied && isSameDiagonal(src, dest) && (dest === src + 9 || dest === src + 7)) {
@@ -65,4 +63,3 @@ export default class Pawn extends Piece {
     return [];
   }
 }
-

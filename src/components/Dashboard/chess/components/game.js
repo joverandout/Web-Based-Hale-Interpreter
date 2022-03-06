@@ -20,7 +20,7 @@ export default class Game extends React.Component {
     }
   }
 
-  handleClick(i) {
+  async handleClick(i) {
     const squares = [...this.state.squares];
 
     if (this.state.sourceSelection === -1) {
@@ -53,8 +53,8 @@ export default class Game extends React.Component {
       const whiteFallenSoldiers = [];
       const blackFallenSoldiers = [];
       const isDestEnemyOccupied = Boolean(squares[i]);
-      const isMovePossible = squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied);
-
+      const isMovePossible = await squares[this.state.sourceSelection].isMovePossible(this.state.sourceSelection, i, isDestEnemyOccupied);
+      console.log(isMovePossible);
       if (isMovePossible) {
         if (squares[i] !== null) {
           if (squares[i].player === 1) {
@@ -68,7 +68,7 @@ export default class Game extends React.Component {
         squares[i] = squares[this.state.sourceSelection];
         squares[this.state.sourceSelection] = null;
 
-        const isCheckMe = this.isCheckForPlayer(squares, this.state.player)
+        const isCheckMe = await this.isCheckForPlayer(squares, this.state.player)
 
         if (isCheckMe) {
           this.setState(oldState => ({
@@ -109,17 +109,19 @@ export default class Game extends React.Component {
       null)
   }
 
-  isCheckForPlayer(squares, player) {
+  async isCheckForPlayer(squares, player) {
     const opponent = player === 1 ? 2 : 1
     const playersKingPosition = this.getKingPosition(squares, player)
-    const canPieceKillPlayersKing = (piece, i) => piece.isMovePossible(playersKingPosition, i, squares)
-    return squares.reduce((acc, curr, idx) =>
-      acc ||
-      (curr &&
-        (curr.getPlayer() === opponent) &&
-        canPieceKillPlayersKing(curr, idx)
-        && true),
-      false)
+    const canPieceKillPlayersKing = false
+    
+    // (piece, i) => piece.isMovePossible(playersKingPosition, i, squares)
+    // return squares.reduce((acc, curr, idx) =>
+    //   acc ||
+    //   (curr &&
+    //     (curr.getPlayer() === opponent) &&
+    //     canPieceKillPlayersKing(curr, idx)
+    //     && true),
+    //   false)
   }
 
   render() {
