@@ -1,4 +1,5 @@
 import time
+from xml.dom import UserDataHandler
 from flask import Flask
 from flask import request
 from flask import jsonify
@@ -6,11 +7,54 @@ from inputStream import InputStream
 from CommonTokenStream import CommonTokenStream
 import haleMain
 
+# import flask
+# import flask_sqlalchemy
+# # import flask_praetorian
+# # import flask_cors
+
 import hashlib
 import sqlite3
 from sqlite3 import Error
 
 app = Flask(__name__)
+
+@app.route('/task1', methods=['POST'])
+def get_minus_eight():
+    json = request.get_json()
+    profile = json['username']
+    src = json['src']
+    file_to_run = ""
+    try:
+        with sqlite3.connect("APIData.db") as con:
+            cur = con.cursor()
+            query = "SELECT spaceForward, equalPos, pawnMoveForward FROM TASK1 WHERE username = '" + profile + "'"
+            cur.execute(query)
+            data = cur.fetchall()
+            print("here")
+            print(data)
+            file_to_run += data[0][0]
+            file_to_run += "\n"
+            print("============")
+            print(file_to_run)
+            print("============")
+            file_to_run += data[0][1]
+            file_to_run += "\n"
+            print("============")
+            print(file_to_run)
+            print("============")
+            file_to_run += data[0][2]
+            file_to_run += "\n"
+            print("============")
+            print(file_to_run)
+            print("============")            
+            file_to_run += "return(pawnMoveForward(" + str(src) + ", True));"
+            print(file_to_run)
+            test, prints, errors = haleMain.runInterpreter(file_to_run)
+            print(test)
+            return {'srcminuseight':test}
+    except:
+        return("cannot fetch data", 430)
+
 
 @app.route('/profile', methods=['POST'])
 def get_profile():
@@ -18,12 +62,12 @@ def get_profile():
     profile = json['username']
     with sqlite3.connect("APIData.db") as con:
         cur = con.cursor()
-        query = "SELECT spaceForward, equalPos, pieceAt, pawnMoveForward FROM TASK1 WHERE username = '" + profile + "'"
+        query = "SELECT spaceForward, equalPos, pawnMoveForward FROM TASK1 WHERE username = '" + profile + "'"
         cur.execute(query)
         data = cur.fetchall()
         print("here")
         print(data)
-        return {'spaceForward':data[0][0], 'equalPos':data[0][1], 'pieceAt':data[0][2], 'pawnMoveForward':data[0][3]}
+        return {'spaceForward':data[0][0], 'equalPos':data[0][1], 'pawnMoveForward':data[0][2]}
 
 @app.route('/getname', methods=['POST'])
 def get_name():
@@ -145,7 +189,7 @@ def hostsignup():
             cur.execute(query)
             data = cur.fetchall()
             if len(data) > 0:
-                return ("Username already exists", 443)
+                return ("Account under that email already exists", 443)
             query = "INSERT INTO USERS VALUES ('" + username + "', '" + hashed_password + "', '" + fname + "', '" + sname +"');"
             print(query)
             cur.execute(query)

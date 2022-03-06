@@ -209,9 +209,12 @@ class Length(BaseFunction):
 
     def call(self, context, param_values):
         p = param_values[0]
+        print(p)
         if p:
             return len(p)
-        errors.append("LOGICAL ERROR: Cannot use 'listlength' on an empty list")
+        if p == []:
+            return 0
+        errors.append("LOGICAL ERROR: Cannot use 'listlength' on an non list")
 
 
 class Map(BaseFunction):

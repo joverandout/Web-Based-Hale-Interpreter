@@ -27,7 +27,7 @@ async function loginUser(credentials) {
   }
   catch (error){
     return([{
-      token: null,
+      token: '',
     }, error.response.data]);
   }
 }
@@ -117,8 +117,8 @@ export default function Login({ setToken, setUserNameCurr }) {
             <br></br>
             <br></br>
             <a href="#" onClick={signup}>Don't have an account? Sign up Here!</a>
-            <div class="errorMessage">{error}</div>
           </form>
+          <div class="errorMessage">{error}</div>
       </div>
       <div class="footer">
         © Joe Moore
