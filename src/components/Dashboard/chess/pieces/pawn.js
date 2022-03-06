@@ -1,8 +1,9 @@
 import Piece from './piece.js';
 import { isSameDiagonal } from '../helpers'
 
+import useUserNameCurr from '../../../../useUserNameCurr.js';
 
-export default class Pawn extends Piece {
+export default class Pawn extends Piece { 
   constructor(player) {
     super(player, (player === 1 ? "https://upload.wikimedia.org/wikipedia/commons/4/45/Chess_plt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/c/c7/Chess_pdt45.svg"));
     this.initialPositions = {
@@ -16,12 +17,11 @@ export default class Pawn extends Piece {
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username: 'joverandout@gmail.com', src: srcc })
+      body: JSON.stringify({ username: 'john@gmail.com', src: srcc })
     }
-
     const response = await fetch('/task1', requestOptions)
     const data = await response.json();
-    console.log(data.srcminuseight);
+    // console.log(useUserNameCurr());
     return data.srcminuseight;
   }
 

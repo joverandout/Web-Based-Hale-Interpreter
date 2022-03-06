@@ -17,10 +17,11 @@ export default class Game extends React.Component {
       sourceSelection: -1,
       status: '',
       turn: 'white'
-    }
+    };
   }
 
   async handleClick(i) {
+    console.log(this.username);
     const squares = [...this.state.squares];
 
     if (this.state.sourceSelection === -1) {

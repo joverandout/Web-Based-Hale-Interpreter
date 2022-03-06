@@ -5,8 +5,7 @@ printline(fib(7));
 printline(fib(3));
 
 
-def spaceForward ::= λ list : do . [listhead(list), listend(list)+1];
-def equalPos ::= λ x1 y1 x2 y2 : bool . (x1 == x2) & (y1 == y2) ? True : False ;
-def pawnMoveForward ::= λ x y boolean : bool . boolean == True ? spaceForward([x,y]) : [];
-
+def spaceForward ::= λ pos : int . pos+8;
+def equalPos ::= λ x y : bool . ((y-x == 8)) ? True : False ;
+def pawnMoveForward ::= λ x boolean : bool . boolean == True ? spaceForward(x) : x;
 printline(pawnMoveForward(1, 2, False));
