@@ -68,9 +68,6 @@ function App() {
   console.log(UserNameCurr)
   console.log("===========")
 
-
-
-  
   if(!token){
     console.log("no token")
     console.log(token)

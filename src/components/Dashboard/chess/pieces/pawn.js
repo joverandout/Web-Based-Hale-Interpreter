@@ -26,6 +26,7 @@ export default class Pawn extends Piece {
   }
 
   async isMovePossible(src, dest, isDestEnemyOccupied, username) {
+    console.log(username);
     let srcc = await this.movepawn(src, username);
     console.log(srcc)
     if (this.player === 1) {
