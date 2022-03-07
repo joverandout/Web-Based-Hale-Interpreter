@@ -6,8 +6,22 @@ export default class Queen extends Piece {
     super(player, (player === 1 ? "https://upload.wikimedia.org/wikipedia/commons/1/15/Chess_qlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/4/47/Chess_qdt45.svg"));
   }
 
-  isMovePossible(src, dest, squares, username) {
-    return isPathClean(this.getSrcToDestPath(src, dest), squares) && (isSameDiagonal(src, dest) || isSameRow(src, dest) || isSameColumn(src, dest));
+  async isMovePossible(src, dest, squares, username) {
+    let path = await this.getSrcToDestPath(src, dest, username);
+    return isPathClean(path, squares) && (isSameDiagonal(src, dest) || isSameRow(src, dest) || isSameColumn(src, dest));
+  }
+
+  async moveQueen(start, stop, increment, username) {
+    console.log("start");
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username, start:start, stop:stop, inc:increment})
+    }
+    const response = await fetch('/task3', requestOptions)
+    const data = await response.json();
+    console.log(data);
+    return data.queenlist;
   }
 
   /**
@@ -16,7 +30,7 @@ export default class Queen extends Piece {
    * @param  {num} dest 
    * @return {[array]}      
    */
-  getSrcToDestPath(src, dest) {
+  async getSrcToDestPath(src, dest, username) {
     let path = [], pathStart, pathEnd, incrementBy;
     if (src > dest) {
       pathStart = dest;
@@ -46,6 +60,11 @@ export default class Queen extends Piece {
     for (let i = pathStart; i < pathEnd; i += incrementBy) {
       path.push(i);
     }
-    return path;
+    
+    let srcc = await this.moveQueen(pathStart, pathEnd, incrementBy, username);
+    console.log(srcc)
+    console.log(path)
+
+    return srcc;
   }
 }

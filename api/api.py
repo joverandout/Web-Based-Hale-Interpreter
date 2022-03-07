@@ -1,3 +1,4 @@
+from queue import PriorityQueue
 import time
 from xml.dom import UserDataHandler
 from flask import Flask
@@ -27,7 +28,7 @@ def get_minus_eight():
     try:
         with sqlite3.connect("APIData.db") as con:
             cur = con.cursor()
-            query = "SELECT spaceForward, equalPos, pawnMoveForward FROM TASK1 WHERE username = '" + profile + "'"
+            query = "SELECT spaceForward, equalPos, pawnMoveForward FROM TASK1 WHERE username = '" + profile + "';"
             cur.execute(query)
             data = cur.fetchall()
             file_to_run += data[0][0]
@@ -50,7 +51,7 @@ def get_list_for_fallen():
     try:
         with sqlite3.connect("APIData.db") as con:
             cur = con.cursor()
-            query = "SELECT addFallen FROM TASK2 WHERE username = '" + profile + "'"
+            query = "SELECT addFallen FROM TASK2 WHERE username = '" + profile + "';"
             cur.execute(query)
             data = cur.fetchall()
             file_to_run += data[0][0]
@@ -58,6 +59,38 @@ def get_list_for_fallen():
             file_to_run += "return(addFallen([1,2,3,5,6,7], 9));"
             test, prints, errors = haleMain.runInterpreter(file_to_run)
             return {'finallist':test}
+    except:
+        return("cannot fetch data", 430)
+
+@app.route('/task3', methods=['POST'])
+def get_path_for_queen():
+    print("KJHIBGI")
+    json = request.get_json()
+    profile = json['username']
+    print(profile)
+    start = json['start']
+    stop = json['stop']
+    increment = json['inc']
+    file_to_run = ""
+    try:
+        with sqlite3.connect("APIData.db") as con:
+            cur = con.cursor()
+            print("KJHIBGI22")
+            query = "SELECT getQueenPath FROM TASK3 WHERE username = '" + profile + "';"
+            print("HLFOPHdfshhB{OBG")
+            print(query)
+            print("HLFOPHB{OBG")
+            cur.execute(query)
+            data = cur.fetchall()
+            print("KJHIBGI33")
+            print(data)
+            file_to_run += data[0][0]
+            print(file_to_run)
+            file_to_run += "\n"
+            file_to_run += "return(getQueenPath("+str(start) + ", " + str(stop) + ", [], " + str(increment) + "));"
+            print(file_to_run)
+            test, prints, errors = haleMain.runInterpreter(file_to_run)
+            return {'queenlist':test}
     except:
         return("cannot fetch data", 430)
 
@@ -112,6 +145,7 @@ def save_file():
     array_of_code = code_to_write.split("\n")
     task1 = ["spaceForward", "equalPos", "pieceAt", "pawnMoveForward"]
     task2 = ["addFallen"]
+    task3 = ["getQueenPath"]
     try:
         for code in array_of_code:
             if(code):
@@ -132,6 +166,16 @@ def save_file():
                         with sqlite3.connect("APIData.db") as con:
                             cur = con.cursor()
                             query = "UPDATE TASK2 SET "+ function + " = '" + code + "' WHERE Username = '"+ username +"';"
+                            cur.execute(query)
+        for code in array_of_code:
+            if(code):
+                found = False
+                for function in task3:
+                    if (not found) and code.startswith('def ' + function):
+                        found = True
+                        with sqlite3.connect("APIData.db") as con:
+                            cur = con.cursor()
+                            query = "UPDATE TASK3 SET "+ function + " = '" + code + "' WHERE Username = '"+ username +"';"
                             cur.execute(query)
     except:
         return {'errorbool': True}
@@ -215,6 +259,8 @@ def hostsignup():
             query = "INSERT INTO TASK1 (Username) VALUES ('" + username +"');"
             cur.execute(query)
             query = "INSERT INTO TASK2 (Username) VALUES ('" + username +"');"
+            cur.execute(query)
+            query = "INSERT INTO TASK3 (Username) VALUES ('" + username +"');"
             cur.execute(query)
             returnDict = dict()
             returnDict["token"] = 'token1234'

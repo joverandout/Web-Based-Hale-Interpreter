@@ -7,7 +7,7 @@ export default class Bishop extends Piece {
   }
 
   isMovePossible(src, dest, squares, username) {
-    return isPathClean(this.getSrcToDestPath(src, dest), squares) && isSameDiagonal(src, dest)
+    return isPathClean(this.getSrcToDestPath(src, dest, username), squares) && isSameDiagonal(src, dest)
   }
 
   /**
@@ -16,7 +16,7 @@ export default class Bishop extends Piece {
    * @param  {num} dest 
    * @return {[array]}      
    */
-  getSrcToDestPath(src, dest) {
+  getSrcToDestPath(src, dest, username) {
     let path = [], pathStart, pathEnd, incrementBy;
     if (src > dest) {
       pathStart = dest;

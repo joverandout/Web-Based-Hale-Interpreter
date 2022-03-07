@@ -178,6 +178,20 @@ function Dashboard() {
               </ol>
             </Accordion.Body>
           </Accordion.Item>
+          <Accordion.Item eventKey="3">
+            <Accordion.Header><div class ="accordhead">Task 3 - Queen's Path</div></Accordion.Header>
+            <Accordion.Body>
+              The Queen is one of the most important pieces in chess, and the most powerful. She can move in any direction and any distance. This makes this challenge quite tricky. It works similarly to the previous challenge, but is
+              definitely a step up.
+              <br></br>
+              <br></br>
+              <ol type="a">
+                <li>Define a function 'getQueenPath' which a start and end space as well as increment and a current path (originally the empty list). Add all the spaces to that list. Until you get to the end destination. HINT: you
+                  will want to make use of recursion here!
+                </li>
+              </ol>
+            </Accordion.Body>
+          </Accordion.Item>
         </Accordion>
         </div>
 

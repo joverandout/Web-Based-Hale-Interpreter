@@ -6,8 +6,8 @@ export default class Rook extends Piece {
     super(player, (player === 1 ? "https://upload.wikimedia.org/wikipedia/commons/7/72/Chess_rlt45.svg" : "https://upload.wikimedia.org/wikipedia/commons/f/ff/Chess_rdt45.svg"));
   }
 
-  isMovePossible(src, dest, squares) {
-    return isPathClean(this.getSrcToDestPath(src, dest), squares) && (isSameColumn(src, dest) || isSameRow(src, dest));
+  isMovePossible(src, dest, squares, username) {
+    return isPathClean(this.getSrcToDestPath(src, dest, username), squares) && (isSameColumn(src, dest) || isSameRow(src, dest));
   }
 
   /**
@@ -16,7 +16,7 @@ export default class Rook extends Piece {
    * @param  {num} dest 
    * @return {[array]}      
    */
-  getSrcToDestPath(src, dest) {
+  getSrcToDestPath(src, dest, username) {
     let path = [], pathStart, pathEnd, incrementBy;
     if (src > dest) {
       pathStart = dest;
