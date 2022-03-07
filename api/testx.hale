@@ -9,4 +9,7 @@ def spaceForward ::= λ pos : int . pos+8;
 def equalPos ::= λ x y : bool . ((y-x == 8)) ? True : False ;
 def pawnMoveForward ::= λ x boolean : bool . boolean == True ? spaceForward(x) : x;
 
+def addFallen ::= λ list x : int . list + [x];
+printline(addFallen([1,2,3,4], 5));
+
 printline(pawnMoveForward(1, 2, False));

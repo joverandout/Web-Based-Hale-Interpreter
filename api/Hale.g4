@@ -68,7 +68,7 @@ value:
 
 BOOL:       'True' | 'False';
 DEF:        'def';
-TYPE:       'int' | 'bool' | 'string' | 'do';
+TYPE:       'int' | 'bool' | 'string' | 'do' | 'list';
 DEFEQ:      '::=';
 FULLSTOP:   '.';
 LAMBDA:     'λ';

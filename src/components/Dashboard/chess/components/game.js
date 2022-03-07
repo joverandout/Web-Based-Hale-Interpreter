@@ -20,6 +20,20 @@ export default class Game extends React.Component {
     };
   }
 
+
+  async getFallen(username) {
+    console.log("start33");
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username})
+    }
+    const response = await fetch('/task2', requestOptions)
+    const data = await response.json();
+    // console.log(useUserNameCurr());
+    return data.finallist;
+  }
+
   async handleClick(i) {
     console.log(this.props.username);
     const squares = [...this.state.squares];
@@ -59,10 +73,18 @@ export default class Game extends React.Component {
       if (isMovePossible) {
         if (squares[i] !== null) {
           if (squares[i].player === 1) {
-            whiteFallenSoldiers.push(squares[i]);
+            let listy = await this.getFallen(this.props.username);
+            console.log(listy)
+            if(listy == [1, 2, 3, 5, 6, 7, 9]){
+              whiteFallenSoldiers.push(squares[i]);
+            }
           }
           else {
-            blackFallenSoldiers.push(squares[i]);
+            let listy = await this.getFallen(this.props.username);
+            console.log(listy)
+            if(listy == [1, 2, 3, 5, 6, 7, 9]){
+              blackFallenSoldiers.push(squares[i]);
+            }
           }
         }
 

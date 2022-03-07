@@ -149,8 +149,8 @@ function Dashboard() {
 
         <div class="accordianny">
         <Accordion defaultActiveKey={['0']} alwaysOpen>
-          <Accordion.Item eventKey="0">
-            <Accordion.Header><div class ="accordhead">Task 1 - pawns</div></Accordion.Header>
+          <Accordion.Item eventKey="1">
+            <Accordion.Header><div class ="accordhead">Task 1 - Pawns</div></Accordion.Header>
             <Accordion.Body>
               <ol type="a">
                 <li>Define a function 'spaceForward' which takes as an input, a list containing the space number of a pawn, returns a list representing the space of the space directly in front of it (that's a decrease of 8).
@@ -165,10 +165,17 @@ function Dashboard() {
               Once you have completed and tested all these functions, hit save and see the effects in game. If you have code them correctly the white pawns should be able to move according to chess moves.
             </Accordion.Body>
           </Accordion.Item>
-          <Accordion.Item eventKey="1">
-            <Accordion.Header><div class ="accordhead">Task 2</div></Accordion.Header>
+          <Accordion.Item eventKey="2">
+            <Accordion.Header><div class ="accordhead">Task 2 - Fallen Soldiers</div></Accordion.Header>
             <Accordion.Body>
-
+              Brilliant you got pawns working, and learnt some basic Hale at the same time. Now it's time to move onto our next challenge... Fallen Soldiers. Currently our chess game does not record when pieces are taken by the
+              opposing player. With the function below you are going to fix that. In this function you will need to work with lists. Remember to make use of the basic list operations, see info if you don't know what those are.
+              <br></br>
+              <br></br>
+              <ol type="a">
+                <li>Define a function 'addFallen' which takes as a list and a piece id (an int), It should return the list with the piece id appended to the end.
+                </li>
+              </ol>
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
