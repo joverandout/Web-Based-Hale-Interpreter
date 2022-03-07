@@ -71,6 +71,9 @@ function Profile() {
       if(data.addFallen){
         Task2CompletedFunctions.push(data.addFallen);
       }
+      if(data.getQueenPath){
+        Task3CompletedFunctions.push(data.getQueenPath);
+      }
     });
   }, []);
 
@@ -124,7 +127,7 @@ function Profile() {
         <img className="photo" src={icon}/>   
         <br></br>
         <h3 class="profilename">{name}</h3>
-        <p class="profilename">Completed functions: {Task1CompletedFunctions.length + Task2CompletedFunctions.length}</p>
+        <p class="profilename">Completed functions: {Task1CompletedFunctions.length + Task2CompletedFunctions.length + Task3CompletedFunctions.length}</p>
         <br></br>
         <br></br>
         <div class="row">

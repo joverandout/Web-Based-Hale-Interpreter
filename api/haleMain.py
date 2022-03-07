@@ -1,3 +1,4 @@
+from distutils.log import error
 import sys
 import codecs
 from hale.HaleVisitor import HaleVisitor
@@ -449,16 +450,20 @@ class Visitor(HaleVisitor):
         return right
 
     def visitAtom(self, context):
-        if context.val:
-            return self.visit(context.val)
-        elif context.ival:
-            return self.visit(context.ival)
-        elif context.lval:
-            return self.visit(context.lval)
-        elif context.ID():
-            func_name = context.ID().getText()
-            params = self.visit(context.params())
-            return self.get_var(func_name).call(self, params)
+        try:
+            if context.val:
+                return self.visit(context.val)
+            elif context.ival:
+                return self.visit(context.ival)
+            elif context.lval:
+                return self.visit(context.lval)
+            elif context.ID():
+                func_name = context.ID().getText()
+                params = self.visit(context.params())
+                return self.get_var(func_name).call(self, params)
+        except RecursionError:
+            errors.append("Recursion Error: maximum recursion depth exceeded")
+
 
     def visitParams(self, context):
         if context.DOLLAR():
@@ -537,7 +542,10 @@ def interactive():
 def runInterpreter(code):
     printValues.clear()
     errors.clear()
-    parse_file(code)
+    try:
+        parse_file(code)
+    except:
+        print("Errors")
     printVal = ""
     for value in printValues:
         printVal += str(value)

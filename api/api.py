@@ -64,10 +64,8 @@ def get_list_for_fallen():
 
 @app.route('/task3', methods=['POST'])
 def get_path_for_queen():
-    print("KJHIBGI")
     json = request.get_json()
     profile = json['username']
-    print(profile)
     start = json['start']
     stop = json['stop']
     increment = json['inc']
@@ -77,13 +75,9 @@ def get_path_for_queen():
             cur = con.cursor()
             print("KJHIBGI22")
             query = "SELECT getQueenPath FROM TASK3 WHERE username = '" + profile + "';"
-            print("HLFOPHdfshhB{OBG")
             print(query)
-            print("HLFOPHB{OBG")
             cur.execute(query)
             data = cur.fetchall()
-            print("KJHIBGI33")
-            print(data)
             file_to_run += data[0][0]
             print(file_to_run)
             file_to_run += "\n"
@@ -108,7 +102,10 @@ def get_profile():
         query = "SELECT addFallen FROM TASK2 WHERE username = '" + profile + "'"
         cur.execute(query)
         data2 = cur.fetchall()
-        return {'spaceForward':data[0][0], 'equalPos':data[0][1], 'pawnMoveForward':data[0][2], 'addFallen':data2[0][0]}
+        query = "SELECT getQueenPath FROM TASK3 WHERE username = '" + profile + "'"
+        cur.execute(query)
+        data3 = cur.fetchall()
+        return {'spaceForward':data[0][0], 'equalPos':data[0][1], 'pawnMoveForward':data[0][2], 'addFallen':data2[0][0], 'getQueenPath':data3[0][0]}
 
 @app.route('/getname', methods=['POST'])
 def get_name():
