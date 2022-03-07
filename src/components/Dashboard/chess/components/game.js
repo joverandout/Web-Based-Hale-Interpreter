@@ -74,15 +74,35 @@ export default class Game extends React.Component {
         if (squares[i] !== null) {
           if (squares[i].player === 1) {
             let listy = await this.getFallen(this.props.username);
-            console.log(listy)
-            if(listy == [1, 2, 3, 5, 6, 7, 9]){
+            let fallenWorks = true;
+            let listtest =  [1, 2, 3, 5, 6, 7, 9]
+            for (let index = 0; index < listy.length; index++) {
+              if(listy[index] != listtest[index]){
+                fallenWorks = false;
+                break;
+              }
+            }
+            if(listtest.length != listy.length){
+              fallenWorks = false;
+            }
+            if(fallenWorks){
               whiteFallenSoldiers.push(squares[i]);
             }
           }
           else {
             let listy = await this.getFallen(this.props.username);
-            console.log(listy)
-            if(listy == [1, 2, 3, 5, 6, 7, 9]){
+            let fallenWorks = true;
+            let listtest =  [1, 2, 3, 5, 6, 7, 9]
+            for (let index = 0; index < listy.length; index++) {
+              if(listy[index] != listtest[index]){
+                fallenWorks = false;
+                break;
+              }
+            }
+            if(listtest.length != listy.length){
+              fallenWorks = false;
+            }
+            if(fallenWorks){
               blackFallenSoldiers.push(squares[i]);
             }
           }

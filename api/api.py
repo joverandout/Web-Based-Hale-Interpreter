@@ -72,7 +72,10 @@ def get_profile():
         data = cur.fetchall()
         print("here")
         print(data)
-        return {'spaceForward':data[0][0], 'equalPos':data[0][1], 'pawnMoveForward':data[0][2]}
+        query = "SELECT addFallen FROM TASK2 WHERE username = '" + profile + "'"
+        cur.execute(query)
+        data2 = cur.fetchall()
+        return {'spaceForward':data[0][0], 'equalPos':data[0][1], 'pawnMoveForward':data[0][2], 'addFallen':data2[0][0]}
 
 @app.route('/getname', methods=['POST'])
 def get_name():

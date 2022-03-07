@@ -67,6 +67,10 @@ function Profile() {
         Task1CompletedFunctions.push(data.pawnMoveForward)
       }
       console.log(Task1CompletedFunctions)
+      Task2CompletedFunctions.splice(0,Task2CompletedFunctions.length);
+      if(data.addFallen){
+        Task2CompletedFunctions.push(data.addFallen);
+      }
     });
   }, []);
 
