@@ -44,27 +44,19 @@ def get_minus_eight():
 
 @app.route('/task2', methods=['POST'])
 def get_list_for_fallen():
-    print("HHHHHHHHHHHHHHHHHHHHHHHHHHH")
     json = request.get_json()
     profile = json['username']
     file_to_run = ""
-    print("++++++++++++++++")
     try:
         with sqlite3.connect("APIData.db") as con:
             cur = con.cursor()
             query = "SELECT addFallen FROM TASK2 WHERE username = '" + profile + "'"
             cur.execute(query)
             data = cur.fetchall()
-            print(data)
             file_to_run += data[0][0]
             file_to_run += "\n"
-            print("============")
-            print(file_to_run)
-            print("============")
             file_to_run += "return(addFallen([1,2,3,5,6,7], 9));"
-            print(file_to_run)
             test, prints, errors = haleMain.runInterpreter(file_to_run)
-            print(test)
             return {'finallist':test}
     except:
         return("cannot fetch data", 430)
