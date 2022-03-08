@@ -156,7 +156,6 @@ export default class Game extends React.Component {
     const opponent = player === 1 ? 2 : 1
     const playersKingPosition = this.getKingPosition(squares, player)
     const canPieceKillPlayersKing = false
-    
     // (piece, i) => piece.isMovePossible(playersKingPosition, i, squares)
     // return squares.reduce((acc, curr, idx) =>
     //   acc ||
@@ -165,6 +164,20 @@ export default class Game extends React.Component {
     //     canPieceKillPlayersKing(curr, idx)
     //     && true),
     //   false)
+
+
+      /*
+    const opponent = player === 1 ? 2 : 1
+    const playersKingPosition = this.getKingPosition(squares, player)
+    let returny = await squares.reduce((acc, curr, idx) =>
+      acc ||
+      (curr &&
+        (curr.getPlayer() === opponent) &&
+        (this.canPieceKillPlayersKing(curr, idx, playersKingPosition, squares))
+        && true),
+      false)
+    return returny
+    */
   }
 
   render() {

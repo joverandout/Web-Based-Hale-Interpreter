@@ -11,7 +11,7 @@ def pawnMoveForward ::= λ x boolean : bool . boolean == True ? spaceForward(x) 
 
 def addFallen ::= λ list x : int . list + [x];
 
-def getQueenPath ::= λ start stop list inc : do . (start == stop) ? (list + [stop]) : getQueenPath((start+inc), stop, (list+[start]), inc);
+def getQueenPath ::= λ start stop list inc : do . (start >= stop) ? (list + [stop]) : getQueenPath((start+inc), stop, (list+[start]), inc);
 
 
 printline(pawnMoveForward(1, 2, False));
