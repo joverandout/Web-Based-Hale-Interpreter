@@ -155,8 +155,7 @@ export default class Game extends React.Component {
   async isCheckForPlayer(squares, player) {
     const opponent = player === 1 ? 2 : 1
     const playersKingPosition = this.getKingPosition(squares, player)
-    const canPieceKillPlayersKing = false
-    // (piece, i) => piece.isMovePossible(playersKingPosition, i, squares)
+    // const canPieceKillPlayersKing = async (piece, i) => await piece.isMovePossible(playersKingPosition, i, squares)
     // return squares.reduce((acc, curr, idx) =>
     //   acc ||
     //   (curr &&
