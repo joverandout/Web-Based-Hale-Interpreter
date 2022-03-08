@@ -1,3 +1,4 @@
+import json
 from queue import PriorityQueue
 import time
 from xml.dom import UserDataHandler
@@ -219,6 +220,7 @@ def hostlogin():
     returnDict = dict()
     returnDict["token"] = 'token1234'
     returnDict["username"] = 'joverandout@gmail.com' 
+    return jsonify(returnDict)
 
 
 @app.route('/hostSignUp', methods=["POST"])
