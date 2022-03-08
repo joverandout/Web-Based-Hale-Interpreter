@@ -20,6 +20,10 @@ from sqlite3 import Error
 
 app = Flask(__name__, static_folder="../build", static_url_path='/')
 
+@app.route('/')
+def index():
+    return app.send_static_file('index.html')
+
 @app.route('/task1', methods=['POST'])
 def get_minus_eight():
     json = request.get_json()
