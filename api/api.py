@@ -18,7 +18,7 @@ import hashlib
 import sqlite3
 from sqlite3 import Error
 
-app = Flask(__name__, static_folder="../build", static_url_path='/')
+app = Flask(__name__)
 
 @app.route('/')
 def index():
