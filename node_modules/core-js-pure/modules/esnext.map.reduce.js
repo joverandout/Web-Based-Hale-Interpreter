@@ -1,14 +1,16 @@
 'use strict';
 var $ = require('../internals/export');
-var IS_PURE = require('../internals/is-pure');
+var global = require('../internals/global');
 var anObject = require('../internals/an-object');
 var aCallable = require('../internals/a-callable');
 var getMapIterator = require('../internals/get-map-iterator');
 var iterate = require('../internals/iterate');
 
+var TypeError = global.TypeError;
+
 // `Map.prototype.reduce` method
 // https://github.com/tc39/proposal-collection-methods
-$({ target: 'Map', proto: true, real: true, forced: IS_PURE }, {
+$({ target: 'Map', proto: true, real: true, forced: true }, {
   reduce: function reduce(callbackfn /* , initialValue */) {
     var map = anObject(this);
     var iterator = getMapIterator(map);

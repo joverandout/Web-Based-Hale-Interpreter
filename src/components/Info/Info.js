@@ -33,12 +33,12 @@ function Info() {
     navigate(path);
   }
 
-  useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setFunctionOutput(data.time);
-      setPrintOutput(data.prints);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch('/time').then(res => res.json()).then(data => {
+  //     setFunctionOutput(data.time);
+  //     setPrintOutput(data.prints);
+  //   });
+  // }, []);
 
 
   function buttonpress(){

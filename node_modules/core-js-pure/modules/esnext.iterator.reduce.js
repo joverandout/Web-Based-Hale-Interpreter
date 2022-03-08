@@ -1,11 +1,14 @@
 'use strict';
 // https://github.com/tc39/proposal-iterator-helpers
 var $ = require('../internals/export');
+var global = require('../internals/global');
 var iterate = require('../internals/iterate');
 var aCallable = require('../internals/a-callable');
 var anObject = require('../internals/an-object');
 
-$({ target: 'Iterator', proto: true, real: true }, {
+var TypeError = global.TypeError;
+
+$({ target: 'Iterator', proto: true, real: true, forced: true }, {
   reduce: function reduce(reducer /* , initialValue */) {
     anObject(this);
     aCallable(reducer);

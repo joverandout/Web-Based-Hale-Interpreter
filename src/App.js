@@ -38,12 +38,12 @@ function App() {
   //         .then(response => response.json());
   // }, []);
 
-  useEffect(() => {
-    fetch('/time').then(res => res.json()).then(data => {
-      setFunctionOutput(data.time);
-      setPrintOutput(data.prints);
-    });
-  }, []);
+  // useEffect(() => {
+  //   fetch('/time').then(res => res.json()).then(data => {
+  //     setFunctionOutput(data.time);
+  //     setPrintOutput(data.prints);
+  //   });
+  // }, []);
 
   function buttonpress(){
     // Simple POST request with a JSON body using fetch

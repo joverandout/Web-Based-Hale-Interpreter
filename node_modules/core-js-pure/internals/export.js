@@ -1,5 +1,7 @@
 'use strict';
 var global = require('../internals/global');
+var apply = require('../internals/function-apply');
+var uncurryThis = require('../internals/function-uncurry-this');
 var isCallable = require('../internals/is-callable');
 var getOwnPropertyDescriptor = require('../internals/object-get-own-property-descriptor').f;
 var isForced = require('../internals/is-forced');
@@ -10,13 +12,13 @@ var hasOwn = require('../internals/has-own-property');
 
 var wrapConstructor = function (NativeConstructor) {
   var Wrapper = function (a, b, c) {
-    if (this instanceof NativeConstructor) {
+    if (this instanceof Wrapper) {
       switch (arguments.length) {
         case 0: return new NativeConstructor();
         case 1: return new NativeConstructor(a);
         case 2: return new NativeConstructor(a, b);
       } return new NativeConstructor(a, b, c);
-    } return NativeConstructor.apply(this, arguments);
+    } return apply(NativeConstructor, this, arguments);
   };
   Wrapper.prototype = NativeConstructor.prototype;
   return Wrapper;
@@ -66,14 +68,14 @@ module.exports = function (options, source) {
     // export native or implementation
     sourceProperty = (USE_NATIVE && nativeProperty) ? nativeProperty : source[key];
 
-    if (USE_NATIVE && typeof targetProperty === typeof sourceProperty) continue;
+    if (USE_NATIVE && typeof targetProperty == typeof sourceProperty) continue;
 
     // bind timers to global for call from export context
     if (options.bind && USE_NATIVE) resultProperty = bind(sourceProperty, global);
     // wrap global constructors for prevent changs in this version
     else if (options.wrap && USE_NATIVE) resultProperty = wrapConstructor(sourceProperty);
     // make static versions for prototype methods
-    else if (PROTO && isCallable(sourceProperty)) resultProperty = bind(Function.call, sourceProperty);
+    else if (PROTO && isCallable(sourceProperty)) resultProperty = uncurryThis(sourceProperty);
     // default case
     else resultProperty = sourceProperty;
 
