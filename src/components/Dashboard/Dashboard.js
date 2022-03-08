@@ -190,23 +190,6 @@ function Dashboard() {
                   will want to make use of recursion here!
                 </li>
               </ol>
-              Make sure you test your function using printlines first. something like 'printline(getQueenPath(1, 15, [], 3))' should give you 
-            </Accordion.Body>
-          </Accordion.Item>
-          <Accordion.Item eventKey="4">
-            <Accordion.Header><div class ="accordhead">Task 4 - Checkmate!</div></Accordion.Header>
-            <Accordion.Body>
-              COMING SOON!
-              {/* The Queen is one of the most important pieces in chess, and the most powerful. She can move in any direction and any distance. This makes this challenge quite tricky. It works similarly to the previous challenge, but is
-              definitely a step up.
-              <br></br>
-              <br></br>
-              <ol type="a">
-                <li>Define a function 'getQueenPath' which a start and end space as well as increment and a current path (originally the empty list). Add all the spaces to that list. Until you get to the end destination. HINT: you
-                  will want to make use of recursion here!
-                </li>
-              </ol>
-              Make sure you test your function using printlines first. something like 'printline(getQueenPath(1, 15, [], 3))' should give you  */}
             </Accordion.Body>
           </Accordion.Item>
         </Accordion>
