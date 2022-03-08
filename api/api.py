@@ -273,9 +273,3 @@ def check_password(password):
         return True
     else:
         return False
-
-@app.route('/usercreate', methods=["POST"])
-def usercreate():
-    info = request.get_json()
-    if info == None:
-        return "No login information was provided"
