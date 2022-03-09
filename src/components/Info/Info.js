@@ -178,7 +178,15 @@ function Info() {
           <p class="line4 terminalp">$ listlength([1,2,3,4]);</p>
           <p class="line4 terminalp">> 4</p>
         </div>
-      </div>
+        <p> Finally to finish off lists let's talk about 'mapfunc'. 'mapfunc' is an example of function composition (we will cover this later). But basically 'mapfunc' takes a function and
+          applies it to every element of a list. To start let's define a basic function we want to apply. Say a simple plus one function that increases the value of an int by 1</p>
+        <p class="inlineterminalp">def add1 ::= λ x : int . x+1;</p>
+        <p>Now we can use 'mapfunc' to apply it to every element of a list</p>
+        <p class="inlineterminalp">mapfunc(add1, [1,2,3]));</p>
+        <p>This will return '2,3,4' as the add1 function has been applied to every element. Be careful though. As we said earlier you might have a list of different types. Then you're in trouble.
+        Make sure either your function you're mapping can be applied to all types or that you're confident your list is all of one type. That's all for now back to programming you! I'm going to
+        grab a coffee. Meet back in ten to talk recursion? Brill!</p>
+        </div>
 
     {/* <div class="mycontainer">
         <div class="myleft">
