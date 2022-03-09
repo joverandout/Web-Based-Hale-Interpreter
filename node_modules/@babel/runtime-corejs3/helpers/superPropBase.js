@@ -9,4 +9,5 @@ function _superPropBase(object, property) {
   return object;
 }
 
-module.exports = _superPropBase, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _superPropBase;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

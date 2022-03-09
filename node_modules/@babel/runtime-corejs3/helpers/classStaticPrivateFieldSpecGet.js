@@ -10,4 +10,5 @@ function _classStaticPrivateFieldSpecGet(receiver, classConstructor, descriptor)
   return classApplyDescriptorGet(receiver, descriptor);
 }
 
-module.exports = _classStaticPrivateFieldSpecGet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classStaticPrivateFieldSpecGet;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

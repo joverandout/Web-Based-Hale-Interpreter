@@ -5,4 +5,5 @@ function _classStaticPrivateMethodGet(receiver, classConstructor, method) {
   return method;
 }
 
-module.exports = _classStaticPrivateMethodGet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classStaticPrivateMethodGet;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

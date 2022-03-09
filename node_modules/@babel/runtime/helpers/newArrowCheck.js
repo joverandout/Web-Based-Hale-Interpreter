@@ -4,4 +4,5 @@ function _newArrowCheck(innerThis, boundThis) {
   }
 }
 
-module.exports = _newArrowCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _newArrowCheck;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

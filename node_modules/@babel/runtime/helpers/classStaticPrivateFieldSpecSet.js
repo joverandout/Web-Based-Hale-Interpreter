@@ -11,4 +11,5 @@ function _classStaticPrivateFieldSpecSet(receiver, classConstructor, descriptor,
   return value;
 }
 
-module.exports = _classStaticPrivateFieldSpecSet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classStaticPrivateFieldSpecSet;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

@@ -7,4 +7,5 @@ function _classPrivateFieldGet(receiver, privateMap) {
   return classApplyDescriptorGet(receiver, descriptor);
 }
 
-module.exports = _classPrivateFieldGet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classPrivateFieldGet;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

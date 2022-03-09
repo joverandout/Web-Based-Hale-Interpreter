@@ -147,10 +147,10 @@ function Profile() {
             <h3 class="columnheader">Task 3 Completed functions:</h3>
             {Task3CompletedFunctions.map(value => <p class="code">{value.toString()}</p>)}
         </div>
-        <div class="column">
+        {/* <div class="column">
             <h3 class="columnheader">Task 4 Completed functions:</h3>
             {Task4CompletedFunctions.map(value => <p class="code">{value.toString()}</p>)}
-        </div>
+        </div> */}
         </div>
       </div>
       <div class="footer2">

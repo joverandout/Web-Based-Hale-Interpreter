@@ -6,4 +6,5 @@ function _classApplyDescriptorGet(receiver, descriptor) {
   return descriptor.value;
 }
 
-module.exports = _classApplyDescriptorGet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classApplyDescriptorGet;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

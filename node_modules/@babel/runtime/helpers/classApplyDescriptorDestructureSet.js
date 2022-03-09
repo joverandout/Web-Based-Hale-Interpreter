@@ -19,4 +19,5 @@ function _classApplyDescriptorDestructureSet(receiver, descriptor) {
   }
 }
 
-module.exports = _classApplyDescriptorDestructureSet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classApplyDescriptorDestructureSet;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

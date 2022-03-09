@@ -153,13 +153,13 @@ function Dashboard() {
             <Accordion.Header><div class ="accordhead">Task 1 - Pawns</div></Accordion.Header>
             <Accordion.Body>
               <ol type="a">
-                <li>Define a function 'spaceForward' which takes as an input, a list containing the space number of a pawn, returns a list representing the space of the space directly in front of it (that's a decrease of 8).
+                <li>Define a function 'spaceForward' which takes as an input, an int representing the space number of a pawn, and returns an int representing the space of the space directly in front of it (that's a decrease of 8).
                 </li>
                 <br></br><li>Define a function 'equalPos' which takes 2 inputs, the positions of 2 pieces, and returns a boolean if the piece is on that space. This will be used to see if any enemy pieces are at
                   the space directly in front of the pawn.
                 </li>
-                <br></br><li>Define a function 'pawnMoveForward' which takes a position of the pawn and a bool (false meaning there is not space in front of it, true meaning there is). It returns a list of available spaces the pawn can move. You will need to make use of your
-                'pieceAt' function, since a pawn can only move forward if a piece isn't in that space. You do not need to consider the 2 space move or the diagonals. Make use of your 'spaceforward' function.</li>
+                <br></br><li>Define a function 'pawnMoveForward' which takes a position of the pawn and a bool (false meaning there is not space in front of it, true meaning there is). It returns a list of available spaces the pawn can move.
+                  You do not need to consider the 2 space move or the diagonals. Make use of your 'spaceforward' function.</li>
                 <br></br>
               </ol>
               Once you have completed and tested all these functions, hit save and see the effects in game. If you have code them correctly the white pawns should be able to move according to chess moves.

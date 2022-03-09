@@ -7,4 +7,5 @@ function _classPrivateFieldDestructureSet(receiver, privateMap) {
   return classApplyDescriptorDestructureSet(receiver, descriptor);
 }
 
-module.exports = _classPrivateFieldDestructureSet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+module.exports = _classPrivateFieldDestructureSet;
+module.exports["default"] = module.exports, module.exports.__esModule = true;

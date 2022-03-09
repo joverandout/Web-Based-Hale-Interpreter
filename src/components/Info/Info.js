@@ -111,7 +111,7 @@ function Info() {
           the programmer that we are defining a new function rather than calling an existing one, or performing some other operation. This is followed by the function name, in this
           case 'cube'. We then see the '::=' which is common notation in many functional programming languages. This is followed by a lambda. This is just again more symbolic and a
           little nod thrown into the language to pay homage to the functional languages that came before Hale. The lambda is followed by any function parameters, in this instance we
-          have one, 'x'. A colon, ':', then means we are getting into the nitty gritty. The type the function should returned is then declared and full stop signifies the beginning
+          have one, 'x'. A colon, ':', then means we are getting into the nitty gritty. The type the function should return is then declared and full stop signifies the beginning
           of the function. The following expression can call other functions, use any of the built in ones, or many other things. The rule of thumb is it has to be an expression. We
           will cover in more detail what this means later. In this case it's an arithmetic operation x is multiplied by itself and then multiplied by x again. Giving the cube of x.
           We finish with a semi-colon, ';'. Let's give that a run. 
@@ -131,13 +131,53 @@ function Info() {
           <p class="line4 terminalp">> LOGICAL ERROR: Multiplication can only be applied to type ints. You have applied it to 'Aubergine' which is type 'str'_</p>
         </div>
         <br></br>
-        <p>So what we're saying with our function definition is this. We are defining a function called bue, it takes one input called x. We expect it to give us an integer back
+        <p>So what we're saying with our function definition is this. We are defining a function called cube, it takes one input called x. We expect it to give us an integer back
           and to get that we are going to multiply x by x by x. Simple right? In case you are slightly confused here is a generic rule of thumb for function definition in Hale:
         </p>
         <p class="inlineterminalp">def [function name] :: = λ [function parameters] : [function type] . [function body]</p>
         <p>Congratulations! You've written your first Hale function. Feel free to return to the exercises or to keep reading if you want to unlock more yummy functional programming
           secrets!
         </p>
+        <br></br>
+        <h3>[Lists, Lists, Lists]</h3>
+        <p>Time to get started with some lists! A list is defined in hale as a regular variable to start: We take it as a parameter as follows:</p>
+        <p class="inlineterminalp">def lo ::= λ lsty inty : list . lsty + [inty];</p>
+        <p>You do not need to declare in hale what type of list you plan to return just that it is a list, lists can have multiple types in them. This function
+          appends an int 'inty' to the list 'lsty'. In order to use '+' to concatenate 2 lists we need to make sure they are both lists. So we wrap our 'inty' in brackets to turn
+          it into a list of length one. These 2 lists can now be combined. Let's try it out.
+        </p>
+        <div class="fakeMenu">
+          <div class="fakeButtons fakeClose"></div>
+          <div class="fakeButtons fakeMinimize"></div>
+          <div class="fakeButtons fakeZoom"></div>
+        </div>
+        <div class="fakeScreen">
+          <p class="line4 terminalp">$ def lo ::= λ lsty inty : list . lsty + [inty];</p>
+          <p class="line4 terminalp">$ lo([1,2,3,4], 5);</p>
+          <p class="line4 terminalp">> 1,2,3,4,5</p>
+          <p class="line4 terminalp">$ lo([2,4,6], 8);</p>
+          <p class="line4 terminalp">> 2,4,6,8</p>
+          <p class="line4 terminalp">$ lo([2,4,6], "not an int");</p>
+          <p class="line4 terminalp">> 2,4,6,not an int</p>
+        </div>
+        <p>There are also a set of default list operations in Hale you can use. Let's take a look at those:</p>
+        <div class="fakeMenu">
+          <div class="fakeButtons fakeClose"></div>
+          <div class="fakeButtons fakeMinimize"></div>
+          <div class="fakeButtons fakeZoom"></div>
+        </div>
+        <div class="fakeScreen">
+          <p class="line4 terminalp">$ listhead([1,2,3,4,5]);</p>
+          <p class="line4 terminalp">> 1</p>
+          <p class="line4 terminalp">$ listtail([1,2,3,4,5]);</p>
+          <p class="line4 terminalp">> 2,3,4,5</p>
+          <p class="line4 terminalp">$ listinit([1,2,3,4,5]);</p>
+          <p class="line4 terminalp">> 1,2,3,4</p>
+          <p class="line4 terminalp">$ listend([1,2,3,4,5]);</p>
+          <p class="line4 terminalp">> 5</p>
+          <p class="line4 terminalp">$ listlength([1,2,3,4]);</p>
+          <p class="line4 terminalp">> 4</p>
+        </div>
       </div>
 
     {/* <div class="mycontainer">
