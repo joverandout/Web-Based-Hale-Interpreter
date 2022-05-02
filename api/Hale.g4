@@ -12,7 +12,6 @@ statement:
 simplestmt:
     expr
     | assign
-    | LCBR simplestmt (SEMICOLON simplestmt)* RCBR
     ;
 
 funcdef:
@@ -26,7 +25,7 @@ expr:
     | conditional;
 
 conditional:
-    condition=comp QUESTION ifcase=simplestmt COLON elsecase=simplestmt;
+    condition=comp QMARK ifcase=simplestmt COLON elsecase=simplestmt;
 
 comp:
     right=boolean (op=(LT|LTE|GT|GTE|CEQ) left=boolean)*;
@@ -88,7 +87,7 @@ CEQ:        '==';
 COMMA:      ',';
 ID:         [a-zA-Z][a-zA-Z0-9]*;
 DQUOTE:     '"';
-QUESTION:   '?';
+QMARK:   '?';
 COLON:      ':';
 EQ:         '=';
 SEMICOLON:  ';';

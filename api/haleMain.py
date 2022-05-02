@@ -247,8 +247,6 @@ class Return(BaseFunction):
         return param_values
 
 class Function(BaseFunction):
-
-
     def __init__(self, name, parent, params, body):
         super().__init__(name)
         self._parent = parent

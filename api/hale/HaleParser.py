@@ -230,11 +230,11 @@ class HaleParser ( Parser ):
             self.state = 35 
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while True:
+            while True: #while there remain unparsed tokens 
                 self.state = 32
-                self.statement()
+                self.statement() #the statement function is where the hale code is parsed as either a simple statement or a function definition
                 self.state = 33
-                self.match(HaleParser.SEMICOLON)
+                self.match(HaleParser.SEMICOLON) #end of either func def or simple statement
                 self.state = 37 
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)

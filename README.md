@@ -104,6 +104,8 @@ Compiled with warnings.
 ```
 This should open the website in your browser. If not you can navigate to the URL manually. 
 
+If you have any issues running it on your own machine, Hale is running live at: http://178.79.146.181:3000/
+
 ## Hale Grammar
 
 ```
