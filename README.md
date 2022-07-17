@@ -107,5 +107,3 @@ This should open the website in your browser. If not you can navigate to the URL
 
 If there are any packet issues, all the packages can be installed using `yarn install` which installs all the dependencies in `package.json`. To manually install packages, enable the virtual environment by navigating into the `\api` folder and running `. venv/bin/activate`. Then use `pip` or `pip3` to install all the packets. 
 
-If you have any issues running it on your own machine, Hale is running live at: http://178.79.146.181:3000/
-
