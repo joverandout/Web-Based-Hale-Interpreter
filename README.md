@@ -1,4 +1,3 @@
-NOTE: Now running live at http://178.79.146.181:3000/
 
 # Web Based Hale Interpreter
 This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'.
