@@ -1,6 +1,6 @@
 
 # Web Based Hale Interpreter
-This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'.
+This is the subject of my Dissertation. It is a web based interpreter for my own functional programming language 'Hale'. The report can be found [here](https://github.com/joverandout/Web-Based-Hale-Interpreter/raw/main/Final%20report.pdf).
 
 ## Disclosure
 
